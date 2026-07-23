@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>See 'n Say — The Farmer Says</title>
+    <meta name="description" content="A browser tribute to the classic pull-cord animal-sound toy." />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/toy.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🐄</text></svg>"
+    />
+  </head>
+  <body>
+    <main class="stage">
+      <h1 class="title">The Farmer Says</h1>
+
+      <div class="toy">
+        <div class="toy__handle" aria-hidden="true"></div>
+
+        <div class="toy__face">
+          <div id="wheel-mount" class="wheel-mount"></div>
+        </div>
+
+        <div id="cord" class="cord">
+          <div class="cord__string" aria-hidden="true"></div>
+          <button
+            type="button"
+            class="cord__ring"
+            aria-label="Pull the cord to hear the animal"
+          >
+            <span class="cord__ring-hole" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <p class="toy__brand" aria-hidden="true">See&nbsp;'n&nbsp;Say</p>
+      </div>
+
+      <p id="caption" class="caption" role="status" aria-live="polite"></p>
+
+      <div class="controls">
+        <button id="surprise" type="button" class="button">🎲 Surprise me</button>
+      </div>
+
+      <p id="notice" class="notice" hidden></p>
+
+      <p class="hint">
+        Click a wedge to aim the arrow, then drag the orange ring down.
+        Arrow keys move the pointer; Enter on the ring pulls it.
+      </p>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

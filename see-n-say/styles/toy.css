@@ -1,0 +1,229 @@
+/* ---------- The plastic body ---------- */
+
+.toy {
+  position: relative;
+  width: min(94vw, 460px);
+  aspect-ratio: 1 / 1.06;
+  border-radius: 42% 42% 38% 38% / 40% 40% 36% 36%;
+  background:
+    linear-gradient(165deg, #fdf7e8 0%, var(--plastic) 42%, var(--plastic-shade) 100%);
+  box-shadow:
+    inset 0 -14px 26px rgba(0, 0, 0, 0.16),
+    inset 0 10px 20px rgba(255, 255, 255, 0.75),
+    0 26px 50px rgba(0, 0, 0, 0.42);
+  display: grid;
+  place-items: center;
+  padding: 6%;
+}
+
+/* The little arched carry handle at the top. */
+.toy__handle {
+  position: absolute;
+  top: -6%;
+  left: 50%;
+  translate: -50% 0;
+  width: 34%;
+  height: 13%;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(180deg, #fdf7e8, var(--plastic-shade));
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.18);
+  z-index: -1;
+}
+
+.toy__face {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--plastic-deep);
+  padding: 3%;
+  box-shadow:
+    inset 0 3px 10px rgba(0, 0, 0, 0.32),
+    0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.toy__brand {
+  position: absolute;
+  bottom: 3.2%;
+  margin: 0;
+  font-size: clamp(0.7rem, 2.4vw, 0.95rem);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ring-orange-dark);
+  opacity: 0.75;
+}
+
+.wheel-mount {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--plastic);
+}
+
+/* ---------- The dial ---------- */
+
+.wheel {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.wedge {
+  cursor: pointer;
+}
+
+.wedge__face {
+  stroke: var(--plastic);
+  stroke-width: 3;
+  transition: filter 0.15s ease;
+}
+
+.wedge--red .wedge__face { fill: var(--toy-red); }
+.wedge--yellow .wedge__face { fill: var(--toy-yellow); }
+.wedge--blue .wedge__face { fill: var(--toy-blue); }
+.wedge--green .wedge__face { fill: var(--toy-green); }
+
+.wedge:hover .wedge__face {
+  filter: brightness(1.12);
+}
+
+.wedge--active .wedge__face {
+  filter: brightness(1.2) saturate(1.15);
+  stroke: #fff;
+  stroke-width: 4;
+}
+
+.wedge__glyph {
+  font-size: 34px;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  user-select: none;
+}
+
+.wedge__label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  fill: rgba(255, 255, 255, 0.92);
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  user-select: none;
+}
+
+.wedge--yellow .wedge__label {
+  fill: rgba(58, 47, 33, 0.85);
+}
+
+/* ---------- Pointer and hub ---------- */
+
+.pointer {
+  transform-origin: 200px 200px;
+  transform: rotate(0deg);
+  transition: transform 1.25s cubic-bezier(0.22, 0.9, 0.24, 1);
+  pointer-events: none;
+}
+
+.wheel--spinning .pointer {
+  transition-duration: 1.5s;
+  transition-timing-function: cubic-bezier(0.16, 0.72, 0.16, 1);
+}
+
+.pointer__arrow {
+  fill: var(--toy-red);
+  stroke: #8f1f1a;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+}
+
+.hub {
+  fill: var(--plastic);
+  stroke: var(--plastic-deep);
+  stroke-width: 4;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.hub__pin {
+  fill: var(--plastic-deep);
+}
+
+/* ---------- Pull cord ---------- */
+
+.cord {
+  position: absolute;
+  /* Tucked against the body so the string reads as coming out of the shell. */
+  top: 42%;
+  right: 0.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  touch-action: none;
+}
+
+.cord__string {
+  width: 6px;
+  height: 70px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #c9531f, var(--ring-orange), #c9531f);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.cord__ring {
+  width: 62px;
+  height: 62px;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #ff8b52, var(--ring-orange) 55%, var(--ring-orange-dark));
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.38), inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  display: grid;
+  place-items: center;
+  transform: translateY(0);
+}
+
+.cord__ring-hole {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--backdrop);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.55);
+}
+
+.cord--dragging .cord__ring {
+  cursor: grabbing;
+}
+
+/* The spring-back. Overshoot slightly for that ratchet snap. */
+.cord--returning .cord__ring {
+  transition: transform 0.4s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.cord--returning .cord__string {
+  transition: height 0.4s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.cord--locked .cord__ring {
+  cursor: not-allowed;
+  filter: saturate(0.7) brightness(0.9);
+}
+
+@media (max-width: 480px) {
+  .cord {
+    right: -4%;
+    top: 52%;
+  }
+
+  .cord__ring {
+    width: 52px;
+    height: 52px;
+  }
+
+  .wedge__glyph {
+    font-size: 30px;
+  }
+}

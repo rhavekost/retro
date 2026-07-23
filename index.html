@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Retro — browser recreations of old toys</title>
+    <meta
+      name="description"
+      content="Browser recreations of classic electronic toys, built with no dependencies and no build step."
+    />
+    <link rel="stylesheet" href="styles/gallery.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%23d8342c'/><rect x='2' y='4' width='12' height='4' rx='1' fill='%2379f7d8'/></svg>"
+    />
+  </head>
+  <body>
+    <main class="page">
+      <header class="masthead">
+        <h1 class="masthead__title">Retro</h1>
+        <p class="masthead__blurb">
+          Browser recreations of the electronic toys I grew up with. No dependencies,
+          no build step — every sound is synthesized in the browser, and every
+          display is drawn from scratch.
+        </p>
+      </header>
+
+      <ul class="shelf">
+        <li class="card">
+          <a class="card__link" href="speak-and-spell/">
+            <span class="thumb thumb--sns" aria-hidden="true">
+              <span class="thumb__handle"></span>
+              <span class="thumb__screen"></span>
+              <span class="thumb__panel"></span>
+            </span>
+            <span class="card__body">
+              <span class="card__year">1978</span>
+              <span class="card__title">Speak &amp; Spell</span>
+              <span class="card__text">
+                Ten words, two tries each, and it recites the correct spelling
+                letter by letter when you miss. Plus Mystery Word, Letter and
+                Secret Code.
+              </span>
+              <span class="card__tech">SVG 14-segment VFD · speech synthesis · 4 difficulty levels</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="see-n-say/">
+            <span class="thumb thumb--wheel" aria-hidden="true">
+              <span class="thumb__dial"></span>
+              <span class="thumb__pointer"></span>
+              <span class="thumb__hub"></span>
+            </span>
+            <span class="card__body">
+              <span class="card__year">1965</span>
+              <span class="card__title">See 'n Say</span>
+              <span class="card__text">
+                Aim the arrow, pull the cord, and the farmer tells you what the
+                cow says. Twelve animals on a spring-loaded dial.
+              </span>
+              <span class="card__tech">Web Audio synthesis · zero audio files · drag-to-pull cord</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="card card--empty">
+          <span class="thumb thumb--empty" aria-hidden="true">?</span>
+          <span class="card__body">
+            <span class="card__title">More on the way</span>
+            <span class="card__text">
+              Simon, Merlin, Lite-Brite, the Big Trak — the shelf is not full yet.
+            </span>
+          </span>
+        </li>
+      </ul>
+
+      <footer class="footer">
+        <p>
+          Every animal call and every beep is generated at runtime from
+          oscillators and filtered noise. Nothing here ships an audio file.
+        </p>
+        <p>
+          <a href="https://github.com/rhavekost/retro">Source on GitHub</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+:root {
+  /* Injection-moulded 1978 palette. */
+  --case-red: #d0342c;
+  --case-red-light: #e8574a;
+  --case-red-dark: #97211c;
+  --panel-yellow: #f4c542;
+  --panel-yellow-dark: #d9a520;
+  --key-blue: #7fb6dd;
+  --key-blue-dark: #4a86b0;
+  --key-red: #e05a4a;
+  --key-gold: #f0d060;
+  --ink-navy: #1e3a5f;
+  --ink: #2a2118;
+
+  --vfd-glow: #79f7d8;
+  --vfd-dim: rgba(121, 247, 216, 0.07);
+  --vfd-black: #0a0f0e;
+
+  --backdrop: #232427;
+  --backdrop-2: #3a3c40;
+
+  --font-display: 'Futura', 'Avenir Next', 'Century Gothic', 'Trebuchet MS', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-display);
+  color: #e8e4dc;
+  background:
+    radial-gradient(circle at 50% 18%, var(--backdrop-2), var(--backdrop) 65%),
+    var(--backdrop);
+  display: flex;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem) 1rem 3rem;
+}
+
+.stage {
+  width: 100%;
+  /* Narrow enough that the console stays taller than it is wide. */
+  max-width: 470px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* ---------- Controls below the toy ---------- */
+
+.console-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.levels-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.levels-label,
+.mute {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.65);
+}
+
+.levels {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.level {
+  font: inherit;
+  font-weight: 700;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.45rem;
+  border: 2px solid rgba(232, 228, 220, 0.25);
+  background: transparent;
+  color: rgba(232, 228, 220, 0.8);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.level:hover {
+  border-color: rgba(232, 228, 220, 0.6);
+}
+
+.level[aria-pressed='true'] {
+  background: var(--panel-yellow);
+  border-color: var(--panel-yellow);
+  color: var(--ink);
+}
+
+.mute {
+  font-family: inherit;
+  border: 2px solid rgba(232, 228, 220, 0.25);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+
+.mute:hover {
+  border-color: rgba(232, 228, 220, 0.6);
+}
+
+.notice {
+  margin: 0;
+  max-width: 44ch;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--panel-yellow);
+}
+
+/* ---------- Instructions ---------- */
+
+.guide {
+  width: 100%;
+  max-width: 46ch;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(232, 228, 220, 0.7);
+}
+
+.guide summary {
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: rgba(232, 228, 220, 0.55);
+}
+
+.guide ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.guide li {
+  margin-bottom: 0.4rem;
+}
+
+.guide strong {
+  color: var(--panel-yellow);
+  font-weight: 700;
+}
+
+:focus-visible {
+  outline: 3px solid var(--vfd-glow);
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 0.6rem 0.5rem 2rem;
+  }
+
+  .stage {
+    gap: 0.9rem;
+  }
+
+  .console-controls {
+    gap: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

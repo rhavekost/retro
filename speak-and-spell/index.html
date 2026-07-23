@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Speak &amp; Spell</title>
+    <meta name="description" content="A browser tribute to the 1978 Texas Instruments Speak &amp; Spell." />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/device.css" />
+    <link rel="stylesheet" href="styles/keypad.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%23d8342c'/><rect x='2' y='3' width='12' height='4' fill='%23111'/></svg>"
+    />
+  </head>
+  <body>
+    <main class="stage">
+      <div class="device">
+        <div class="device__handle" aria-hidden="true">
+          <span class="device__handle-hole"></span>
+        </div>
+
+        <div class="device__screen">
+          <div class="device__vents" aria-hidden="true"></div>
+          <div id="vfd" class="vfd"></div>
+        </div>
+
+        <div class="panel">
+          <div id="keypad" class="keypad"></div>
+          <p class="wordmark" aria-hidden="true">
+            <span class="wordmark__speak">Speak</span>
+            <span class="wordmark__amp">&amp;</span><span class="wordmark__spell">Spell</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="console-controls">
+        <div class="levels-wrap">
+          <span class="levels-label">Level</span>
+          <div id="levels" class="levels" role="group" aria-label="Difficulty level"></div>
+        </div>
+        <button id="mute" type="button" class="mute" aria-pressed="false">🔊 Sound on</button>
+      </div>
+
+      <p id="notice" class="notice" hidden></p>
+
+      <details class="guide">
+        <summary>How to play</summary>
+        <ul>
+          <li><strong>ON</strong> wakes it up. <strong>OFF</strong> stops it mid-sentence.</li>
+          <li><strong>SPELL</strong> — it says a word, you type it and press <strong>ENTER</strong>. Two tries, ten words, then a score.</li>
+          <li><strong>MYSTERY WORD</strong> — hangman. Six misses allowed.</li>
+          <li><strong>LETTER</strong> — it calls out a letter, you find it.</li>
+          <li><strong>SECRET CODE</strong> — type a word, hand the toy over, let someone decode it.</li>
+          <li><strong>CLUE</strong> reveals letters, <strong>SAY IT</strong> repeats the word, <strong>REPEAT</strong> replays the last phrase, <strong>REPLAY</strong> restarts the round.</li>
+          <li>Your physical keyboard works too — letters, Enter, and Backspace to erase.</li>
+        </ul>
+      </details>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
