@@ -252,3 +252,12 @@ placeholder text hardcodes "Simon, Merlin, Lite-Brite, the Big Trak" as
 still-to-come — will need updating once Simon/Etch/Lite-Brite are all
 merged, since only Merlin and Big Trak will still be true. Not part of any
 current plan's scope; a one-line polish pass at the very end.
+
+## Final whole-branch review (Opus, a6693b4..8d3117c)
+Ready to merge: yes, no further fixes. Confirmed purely additive (zero diff
+to speak-and-spell/see-n-say/talkboy/speak-and-math), turn-lock race fix and
+level-chip CSS fix both verified present and correct, no shared .thumb__hub
+class leakage between Simon's and See 'n Say's cards, all 36 tests pass.
+Repeated the already-tracked placeholder-text nit (deferred, not blocking).
+
+Ready to merge to main.
