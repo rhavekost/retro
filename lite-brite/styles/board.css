@@ -1,0 +1,96 @@
+.box {
+  width: 100%;
+  max-width: 620px;
+  padding: clamp(0.9rem, 3vw, 1.4rem);
+  border-radius: 1rem;
+  background: linear-gradient(158deg, var(--box-hi), var(--box) 42%, var(--box-lo));
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: clamp(0.5rem, 2vw, 0.9rem);
+  border-radius: 0.35rem;
+  background: var(--paper);
+  box-shadow: inset 0 3px 12px rgba(0, 0, 0, 0.9);
+  touch-action: none;
+}
+
+.pegrow {
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+}
+
+/* Alternate rows sit half a hole over, as on the real board. Each hole is
+   1/COLS of the row, so half a hole is half of that. */
+.pegrow--offset {
+  transform: translateX(calc(50% / var(--cols)));
+}
+
+.hole {
+  flex: 1 1 0;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #17171a;
+  box-shadow: inset 0 1px 1.5px rgba(0, 0, 0, 0.9);
+  transition: box-shadow 0.09s ease, background 0.09s ease;
+}
+
+.hole:hover {
+  background: #232327;
+}
+
+.hole--lit {
+  background: var(--peg);
+  box-shadow:
+    0 0 4px var(--peg),
+    0 0 10px var(--peg),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- Palette ---------- */
+
+.palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.swatch {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--peg);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--peg);
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+
+.swatch:hover { transform: translateY(-2px); }
+
+.swatch[aria-pressed='true'] {
+  border-color: #fff;
+  transform: translateY(-3px) scale(1.08);
+}
+
+.swatch--eraser {
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink-dim, rgba(236, 232, 224, 0.7));
+  font-size: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hole, .swatch { transition: none; }
+}
