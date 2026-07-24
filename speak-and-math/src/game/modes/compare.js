@@ -22,7 +22,7 @@ export const createCompareMode = (io, { level, rng = Math.random }) => {
 
   const finish = async () => {
     await io.celebrate(`YOU GOT ${score} RIGHT OUT OF ${ROUND_LENGTH}`);
-    await io.show('SOLVE OR GO');
+    await io.show('COMPARE OR GO');
   };
 
   return {

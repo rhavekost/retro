@@ -23,7 +23,7 @@ export const createStumperMode = (io, { level, rng = Math.random }) => {
 
   const finish = async () => {
     await io.celebrate(`YOU GOT ${score} RIGHT OUT OF ${ROUND_LENGTH}`);
-    await io.show('SOLVE OR GO');
+    await io.show('STUMPER OR GO');
   };
 
   const submit = async () => {
@@ -44,7 +44,7 @@ export const createStumperMode = (io, { level, rng = Math.random }) => {
     }
 
     await io.wrong('THAT IS INCORRECT');
-    await io.announce(`${puzzle.answer}`, { speech: `The missing number is ${puzzle.answer}` });
+    await io.announce(`${puzzle.display.replace('?', puzzle.answer)}`, { speech: `The missing number is ${puzzle.answer}` });
     await io.wait(500);
     if (asked >= ROUND_LENGTH) return finish();
     return ask();
