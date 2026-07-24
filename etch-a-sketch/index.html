@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Etch A Sketch</title>
+    <meta name="description" content="A browser tribute to the 1960 drawing toy." />
+    <link rel="stylesheet" href="../shared/styles/tokens.css" />
+    <link rel="stylesheet" href="../shared/styles/frame.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/frame.css" />
+    <link rel="stylesheet" href="../shared/styles/backlink.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='2' fill='%23c0392b'/><rect x='2' y='3' width='12' height='8' rx='1' fill='%23c8c9c3'/></svg>"
+    />
+  </head>
+  <body>
+    <a class="backlink" href="../">
+      <span class="backlink__arrow" aria-hidden="true">←</span> All toys
+    </a>
+
+    <main class="stage">
+      <h1 class="title">Etch A Sketch</h1>
+
+      <div class="frame">
+        <canvas id="screen" class="screen" aria-label="Drawing screen"></canvas>
+        <p class="frame__wordmark" aria-hidden="true">Etch A Sketch</p>
+
+        <button
+          id="knob-left"
+          type="button"
+          class="knob knob--left"
+          aria-label="Left knob, moves horizontally. Use arrow keys."
+        ></button>
+        <button
+          id="knob-right"
+          type="button"
+          class="knob knob--right"
+          aria-label="Right knob, moves vertically. Use arrow keys."
+        ></button>
+      </div>
+
+      <div class="controls">
+        <button id="shake" type="button" class="button">Shake to erase</button>
+      </div>
+
+      <p class="hint">
+        Left knob draws across, right knob draws up and down — and the line
+        never lifts. Grab a knob and turn it, or tab to one and use the arrow keys.
+      </p>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
