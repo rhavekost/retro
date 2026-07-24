@@ -6,6 +6,9 @@ import { makeComparison } from '../../data/problems.js';
 
 const ROUND_LENGTH = 10;
 const RELATION_KEYS = { LT: '<', GT: '>', EQ: '=' };
+// The shared 14-segment font can't draw '<' or '>' (see shared/display/segments.js),
+// so the display half of the wrong-answer feedback spells the relation out.
+const RELATION_WORD = { '<': 'LESS THAN', '>': 'MORE THAN', '=': 'EQUAL TO' };
 
 export const createCompareMode = (io, { level, rng = Math.random }) => {
   let pair = null;
@@ -53,7 +56,7 @@ export const createCompareMode = (io, { level, rng = Math.random }) => {
         await io.correct('THAT IS CORRECT');
       } else {
         await io.wrong('NO');
-        await io.announce(`${pair.left}${pair.relation}${pair.right}`, {
+        await io.announce(`${pair.left} ${RELATION_WORD[pair.relation]} ${pair.right}`, {
           speech: `${pair.left} is ${
             pair.relation === '=' ? 'equal to' : pair.relation === '<' ? 'less than' : 'greater than'
           } ${pair.right}`,

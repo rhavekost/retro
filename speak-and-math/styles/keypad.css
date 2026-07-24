@@ -25,10 +25,6 @@
   grid-template-columns: repeat(5, 1fr);
 }
 
-.keyrow--letters {
-  grid-template-columns: repeat(10, 1fr);
-}
-
 .key {
   position: relative;
   font-family: inherit;
@@ -65,7 +61,7 @@
   translate: -50% 0;
   white-space: pre;
   text-align: center;
-  /* Capped so the longest caption ("MYSTERY") still clears its column. */
+  /* Capped so the longest caption still clears its column. */
   font-size: clamp(0.4rem, 1.3vw, 0.5rem);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -113,10 +109,6 @@
     0 1.5px 0 rgba(0, 0, 0, 0.35),
     inset 0 1px 1px rgba(255, 255, 255, 0.7);
   filter: brightness(1.15);
-}
-
-.keyrow--letters-3 {
-  grid-template-columns: repeat(10, 1fr);
 }
 
 /* Phones: stretch the keys further vertically so the console stays clearly
