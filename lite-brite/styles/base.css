@@ -4,3 +4,9 @@
   --box-lo: #9a231d;
   --paper: #0a0a0c;
 }
+
+body {
+  background:
+    radial-gradient(circle at 50% 16%, var(--backdrop-2), var(--backdrop) 62%),
+    var(--backdrop);
+}

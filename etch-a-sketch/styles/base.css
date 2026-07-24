@@ -6,3 +6,9 @@
   --knob: #f0ece3;
   --knob-lo: #b8b3a6;
 }
+
+body {
+  background:
+    radial-gradient(circle at 50% 16%, var(--backdrop-2), var(--backdrop) 62%),
+    var(--backdrop);
+}
