@@ -543,10 +543,10 @@ Create `lite-brite/index.html`:
 
       <div class="controls">
         <button id="share" type="button" class="button">Copy link to this picture</button>
-        <button id="clear" type="button" class="button button--quiet">Clear board</button>
+        <button id="clear" type="button" class="button">Clear board</button>
       </div>
 
-      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <p id="status" class="caption" role="status" aria-live="polite"></p>
 
       <p class="hint">
         Pick a colour and drag across the board to place pegs. Your picture lives
@@ -662,7 +662,7 @@ The whole toy is the glow. Lit pegs need a bloom that reads against black; unlit
 
 - [ ] **Step 1: Write the page frame**
 
-`.stage`, `.title`, `.button`, `.button--quiet`, `.status` and `.hint` all come from `shared/styles/frame.css`, linked in the markup above. This file declares only the box colours.
+`.stage`, `.title`, `.button`, `.caption` and `.hint` all come from `shared/styles/frame.css`, linked in the markup above. This file declares only the box colours.
 
 Create `lite-brite/styles/base.css`:
 

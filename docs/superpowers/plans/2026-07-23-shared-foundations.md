@@ -770,7 +770,9 @@ git commit -m "refactor: hoist shared design tokens"
 - Modify: the three toy `index.html` files (add the stylesheet link)
 
 **Interfaces:**
-- Produces the classes every toy page uses for chrome: `.stage`, `.title`, `.caption` / `.status`, `.controls`, `.button`, `.button--quiet`, `.levels`, `.levels-wrap`, `.levels-label`, `.level`, `.hint`, `.notice`.
+- Produces the classes every toy page uses for chrome: `.stage`, `.title`, `.caption`, `.controls`, `.button`, `.levels-wrap`, `.levels`, `.hint`, `.notice`.
+
+> **Amended after the final review.** As written below this task also shipped `.status`, `.button--quiet` and the `.level` chip rules. `.status` and `.button--quiet` matched nothing in the repo and were deleted; the `.level` chips were deleted from the frame because Speak & Spell already defines them with *different* colours and loads last, so the frame's copies never took effect. Only `.levels-wrap` / `.levels` stayed shared. See commit b4b624d.
 - Each of the four new toys links this instead of restating it.
 
 Every toy so far has reimplemented the same centred column, title, pill readout and level picker. Four more toys are coming; this is the moment to stop copying it.
