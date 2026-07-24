@@ -2,7 +2,8 @@
  * Boots the device: display, keypad, machine, and the physical-keyboard bridge.
  */
 import { createDisplay } from '../../shared/display/display.js';
-import { createKeypad, codeForKeyboardEvent } from './ui/keypad.js';
+import { createKeypad, codeForKeyboardEvent } from '../../shared/ui/keypad.js';
+import { SPEAK_AND_SPELL_ROWS } from './ui/layout.js';
 import { createConsole } from './game/console.js';
 import { createMachine } from './game/machine.js';
 import { setMuted, isVoiceSupported, cancelSpeech } from './audio/voice.js';
@@ -27,7 +28,10 @@ const handlePress = (code) => {
   machine.press(code);
 };
 
-const keypad = createKeypad(document.querySelector('#keypad'), handlePress);
+const keypad = createKeypad(document.querySelector('#keypad'), {
+  rows: SPEAK_AND_SPELL_ROWS,
+  onPress: handlePress,
+});
 
 const machine = createMachine(io, {
   onStateChange: (state) => {
