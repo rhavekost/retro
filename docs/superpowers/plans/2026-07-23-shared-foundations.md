@@ -29,7 +29,7 @@ git add -A && git commit -m "feat: add Talkboy and shared back-link"
 
 | File | Responsibility |
 | --- | --- |
-| `package.json` | `"type": "module"` + `npm test`. No dependencies. |
+| `package.json` | `"type": "module"` + `npm test`. No dependencies. Node 22 needs the glob form `test/*.test.js`; a bare `test/` directory argument fails. |
 | `test/segments.test.js` | Segment-map correctness. |
 | `test/drag.test.js` | Drag classification maths. |
 | `shared/display/segments.js` | 14-segment geometry + character map (moved). |
@@ -81,8 +81,8 @@ test('canRender rejects an unmapped character', () => {
 
 - [ ] **Step 2: Run it and watch it fail**
 
-Run: `node --test test/`
-Expected: FAIL — `Cannot find package 'retro'` or an ES-module resolution error, because there is no `package.json` declaring `"type": "module"`.
+Run: `node --test test/*.test.js`
+Expected: FAIL — `SyntaxError: Cannot use import statement outside a module`, because without a `package.json` declaring `"type": "module"` Node parses `.js` as CommonJS.
 
 - [ ] **Step 3: Add the package manifest**
 
@@ -96,7 +96,7 @@ Create `package.json`:
   "type": "module",
   "description": "Browser recreations of classic electronic toys",
   "scripts": {
-    "test": "node --test test/"
+    "test": "node --test test/*.test.js"
   }
 }
 ```

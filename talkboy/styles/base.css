@@ -1,21 +1,29 @@
 :root {
-  /* Early-90s consumer electronics: grey ABS, charcoal deck, one loud red. */
-  --case: #8d9298;
-  --case-hi: #b3b8bd;
-  --case-lo: #62676d;
-  --case-edge: #4b5056;
-  --deck: #2b2e33;
-  --deck-lo: #1b1e21;
-  --smoke: #15181b;
+  /* The Deluxe Talkboy was moulded in bright satin silver with charcoal keys
+     and exactly one red button. */
+  --case: #c9ced3;
+  --case-hi: #eef1f3;
+  --case-lo: #9ba0a6;
+  --case-edge: #7d8288;
 
-  --rec-red: #d0362b;
-  --rec-red-dark: #8f2019;
+  /* The many-stop gradient that stands in for a metallic sheen. */
+  --silver-sheen: linear-gradient(
+    102deg,
+    #b8bdc3 0%,
+    #eff2f4 14%,
+    #ccd1d6 30%,
+    #a9aeb4 48%,
+    #e2e6e9 66%,
+    #b4b9bf 84%,
+    #8e9399 100%
+  );
+
+  --rec-red: #d8342c;
+  --rec-red-dark: #91201a;
   --lamp-off: #4a2320;
 
   --label: #e6e1d4;
   --label-dim: rgba(230, 225, 212, 0.55);
-  --key-face: #d9d6cf;
-  --key-face-lo: #a9a69f;
   --meter-green: #59d67f;
   --meter-amber: #f0b429;
   --meter-red: #e8503a;
@@ -26,6 +34,8 @@
 
   --font-display: 'Futura', 'Avenir Next', 'Century Gothic', 'Trebuchet MS', system-ui, sans-serif;
   --font-mono: 'DIN Alternate', 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  /* The wordmark was a flowing brush script. */
+  --font-script: 'Snell Roundhand', 'Brush Script MT', 'Segoe Script', 'Bradley Hand', cursive;
 }
 
 * {

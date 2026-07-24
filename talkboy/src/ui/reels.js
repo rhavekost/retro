@@ -5,11 +5,11 @@
  */
 /* Sized to sit inside the round porthole, the way the real one shows you a
    circle of cassette rather than the whole shell. */
-const VIEW = { width: 150, height: 120 };
+const VIEW = { width: 132, height: 106 };
 const HUB_RADIUS = 7;
-const PACK_RADIUS = 24;
-const LEFT = { x: 48, y: 52 };
-const RIGHT = { x: 102, y: 52 };
+const PACK_RADIUS = 25;
+const LEFT = { x: 40, y: 46 };
+const RIGHT = { x: 92, y: 46 };
 const SPOKES = 6;
 /**
  * Degrees per second per unit of (tape-speed / pack-radius). Tuned so play
@@ -67,7 +67,7 @@ export const createReels = (mount) => {
   // Exposed tape along the bottom of the shell, where the heads sit. The two
   // vertical runs start at the edge of each pack, so they shorten and lengthen
   // as the tape moves from one reel to the other.
-  const TAPE_Y = 92;
+  const TAPE_Y = 84;
   root.appendChild(
     svg('line', { x1: LEFT.x, y1: TAPE_Y, x2: RIGHT.x, y2: TAPE_Y, class: 'cassette__tape-path' }),
   );

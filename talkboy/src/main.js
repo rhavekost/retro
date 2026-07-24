@@ -111,7 +111,7 @@ const render = () => {
 
   el.deck.classList.toggle('deck--rolling', mode === 'playing');
   el.deck.classList.toggle('deck--recording', mode === 'recording');
-  el.boom.classList.toggle('boom--extended', mode === 'recording');
+  el.boom.classList.toggle('mic--extended', mode === 'recording');
   el.lamp.classList.toggle('lamp--on', mode === 'recording');
 
   el.erase.disabled = tape.isBlank || mode !== 'stopped';
