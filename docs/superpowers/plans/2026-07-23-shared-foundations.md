@@ -25,6 +25,8 @@ The working tree currently has uncommitted changes (`talkboy/` is untracked; `RE
 git add -A && git commit -m "feat: add Talkboy and shared back-link"
 ```
 
+- **Never run `git add -A` or `git commit -a`.** Stage only the files your task touches, by explicit path. A concurrent session edits this repo, and a blanket stage sweeps that unrelated work into your commit.
+
 ## File Structure
 
 | File | Responsibility |
@@ -196,7 +198,7 @@ Expected: the display scrolls `SPEAK AND SPELL`, then asks you to spell a word. 
 - [ ] **Step 7: Commit**
 
 ```bash
-git add -A
+git add shared/display/segments.js speak-and-spell/src/display/display.js test/segments.test.js
 git commit -m "refactor: move segment map to shared, add arithmetic glyphs"
 ```
 
@@ -263,7 +265,7 @@ Expected: eight cells render, long messages scroll, typed letters appear right-a
 - [ ] **Step 5: Commit**
 
 ```bash
-git add -A
+git add shared/display/display.js speak-and-spell/src/main.js
 git commit -m "refactor: move segment display to shared, parameterise cell count"
 ```
 
@@ -320,7 +322,7 @@ Expected: power-on arpeggio, then a click on each keypress. Toggle **Sound on/of
 - [ ] **Step 4: Commit**
 
 ```bash
-git add -A
+git add shared/audio/beeps.js speak-and-spell/src/main.js speak-and-spell/src/game/console.js speak-and-spell/src/game/machine.js
 git commit -m "refactor: move beeps to shared audio"
 ```
 
@@ -503,7 +505,7 @@ Expected: identical behaviour to before — captions in the right places, mode k
 - [ ] **Step 6: Commit**
 
 ```bash
-git add -A
+git add shared/ui/keypad.js speak-and-spell/src/ui/layout.js speak-and-spell/src/main.js
 git commit -m "refactor: make the keypad layout-driven and shared"
 ```
 
@@ -679,7 +681,7 @@ Expected: click plays a full pull; long drag plays a full pull; short drag snaps
 - [ ] **Step 7: Commit**
 
 ```bash
-git add -A
+git add shared/ui/drag.js test/drag.test.js see-n-say/src/ui/cord.js
 git commit -m "feat: shared drag handle with tap/fire/cancel classification"
 ```
 
@@ -754,7 +756,7 @@ Expected: no visual change anywhere. If a colour goes wrong, the token was toy-s
 - [ ] **Step 5: Commit**
 
 ```bash
-git add -A
+git add shared/styles/tokens.css index.html speak-and-spell see-n-say talkboy
 git commit -m "refactor: hoist shared design tokens"
 ```
 
@@ -950,7 +952,7 @@ Expected: no visual change. Buttons, titles, captions and level pickers look exa
 - [ ] **Step 5: Commit**
 
 ```bash
-git add -A
+git add shared/styles/frame.css see-n-say speak-and-spell talkboy
 git commit -m "refactor: hoist the shared page frame"
 ```
 
@@ -1103,7 +1105,7 @@ Expected: three cards plus the dashed placeholder, visually identical to before,
 - [ ] **Step 5: Commit**
 
 ```bash
-git add -A
+git add shared/data/toys.js src/gallery.js index.html
 git commit -m "refactor: render the gallery from a manifest"
 ```
 

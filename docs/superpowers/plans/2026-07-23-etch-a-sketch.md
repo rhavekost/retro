@@ -16,6 +16,8 @@
 - **The line never lifts.** There is no "pen up" state; every knob movement draws.
 - The page links `../shared/styles/tokens.css` first and `../shared/styles/backlink.css` last, and carries the back-link anchor.
 
+- **Never run `git add -A` or `git commit -a`.** Stage only the files your task touches, by explicit path. A concurrent session edits this repo, and a blanket stage sweeps that unrelated work into your commit.
+
 ## File Structure
 
 | File | Responsibility |
