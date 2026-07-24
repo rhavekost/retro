@@ -278,7 +278,7 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
-/* Talkboy: grey handheld with the cassette window and a row of piano keys. */
+/* Talkboy: silver handheld, keys along the top edge, round tape porthole. */
 .thumb--tape {
   background: linear-gradient(165deg, #3a3e44, #1d2023);
   display: grid;
@@ -288,30 +288,68 @@ body {
 .thumb--tape::before {
   content: '';
   position: absolute;
-  width: 140px;
-  height: 132px;
-  border-radius: 12px;
-  background: linear-gradient(158deg, #b3b8bd, #8d9298 38%, #62676d);
+  width: 148px;
+  height: 104px;
+  border-radius: 8px;
+  transform: translateY(8px);
+  background: linear-gradient(102deg, #b8bdc3, #eff2f4 16%, #ccd1d6 38%, #a9aeb4 60%, #e2e6e9 80%, #92979d);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
 }
 
-.thumb__shell {
+/* The row of dark transport keys standing on the top edge. */
+.thumb__keys {
   position: absolute;
   z-index: 1;
   width: 116px;
-  height: 58px;
-  border-radius: 6px;
-  transform: translateY(-25px);
-  background: linear-gradient(180deg, #15181b, #0d0f11);
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  height: 17px;
+  transform: translate(-8px, -52px);
+  border-radius: 3px 3px 0 0;
+  background:
+    repeating-linear-gradient(90deg, #4a4e53 0 21px, transparent 21px 24px),
+    transparent;
+}
+
+/* The one red button on the whole toy. */
+.thumb__keys::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 0;
+  width: 17px;
+  height: 17px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, #ec5a4e, var(--case-red));
+}
+
+/* Three moulded ribs on the lower left of the face. */
+.thumb__slots {
+  position: absolute;
+  z-index: 1;
+  width: 62px;
+  height: 30px;
+  transform: translate(-38px, 26px);
+  background:
+    repeating-linear-gradient(180deg, #2b2f33 0 7px, transparent 7px 12px);
+  border-radius: 2px;
+}
+
+/* The round window onto the cassette. */
+.thumb__porthole {
+  position: absolute;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transform: translate(42px, 10px);
+  background: radial-gradient(circle at 32% 26%, #26292c, #0f1214 68%);
+  box-shadow: 0 0 0 3px #b7bcc2, inset 0 2px 6px rgba(0, 0, 0, 0.9);
+  display: grid;
+  place-items: center;
 }
 
 .thumb__reel {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #3b3226;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
@@ -321,45 +359,10 @@ body {
 
 .thumb__reel::after {
   content: '';
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: #d7d3ca;
-}
-
-/* The supply reel is fatter than the take-up reel near the top of a tape. */
-.thumb__reel--right {
-  width: 24px;
-  height: 24px;
-}
-
-.thumb__keys {
-  position: absolute;
-  z-index: 1;
-  width: 116px;
-  height: 26px;
-  border-radius: 5px;
-  transform: translateY(38px);
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #d9d6cf 0 18px,
-      transparent 18px 23px
-    ),
-    #26282b;
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.7);
-}
-
-/* The record key at the far right, in the one loud colour on the whole case. */
-.thumb__keys::after {
-  content: '';
-  position: absolute;
-  right: 4px;
-  top: 5px;
-  width: 14px;
-  height: 16px;
-  border-radius: 3px;
-  background: var(--case-red);
 }
 
 .thumb--empty {

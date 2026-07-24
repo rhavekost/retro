@@ -17,7 +17,6 @@ const WAVEFORM_BARS = 28;
 
 const el = {
   deck: document.querySelector('.deck'),
-  boom: document.querySelector('#boom'),
   caption: document.querySelector('#caption'),
   notice: document.querySelector('#notice'),
   lamp: document.querySelector('#rec-lamp'),
@@ -111,7 +110,6 @@ const render = () => {
 
   el.deck.classList.toggle('deck--rolling', mode === 'playing');
   el.deck.classList.toggle('deck--recording', mode === 'recording');
-  el.boom.classList.toggle('mic--extended', mode === 'recording');
   el.lamp.classList.toggle('lamp--on', mode === 'recording');
 
   el.erase.disabled = tape.isBlank || mode !== 'stopped';

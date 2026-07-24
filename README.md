@@ -55,8 +55,11 @@ flick the speed switch to **Slow** and hit `PLAY`.
 - The reels spool at the right relative rates: the take-up reel is fat and slow
   while the supply reel gets thin and frantic, because angular speed is linear
   speed over pack radius.
-- Live VU meter, three-digit tape counter, and a brown strip on the cassette
-  label showing where on the tape your recordings actually sit.
+- Live VU meter, three-digit tape counter, and a strip showing where on the
+  tape your recordings actually sit.
+- The case is drawn to match the real Deluxe: silver, keys on the top edge, the
+  round porthole, the speaker on the wedge end, the fold-out carry handle. The
+  telescoping microphone slides out of the top-right corner while you record.
 
 Recording needs microphone permission. Nothing is uploaded — the audio never
 leaves the page, and the tape is gone when you close the tab.

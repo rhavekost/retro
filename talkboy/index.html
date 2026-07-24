@@ -25,10 +25,24 @@
       <h1 class="title">Talkboy</h1>
 
       <div class="deck">
-        <!-- The flip-out microphone paddle, hinged on the left edge. -->
-        <div id="boom" class="mic" aria-hidden="true">
-          <span class="mic__panel"></span>
-          <span class="mic__capsule"><span class="mic__holes"></span></span>
+        <!--
+          The left end of the case is a wedge. The round perforated disc on that
+          angled facet is the speaker, and the flat rectangle above it is the
+          carry handle you hold the deck by.
+        -->
+        <div class="side" aria-hidden="true">
+          <span class="handle"></span>
+          <span class="prow"></span>
+          <span class="speaker"><span class="speaker__holes"></span></span>
+        </div>
+
+        <!--
+          The microphone: a dark telescoping boom that slides up out of a slot
+          in the top-right corner. It extends itself when the tape rolls.
+        -->
+        <div class="mic" aria-hidden="true">
+          <span class="mic__boom"></span>
+          <span class="mic__tip"></span>
         </div>
 
         <!-- Transport keys stand proud of the top edge, as on the real deck. -->
@@ -84,10 +98,10 @@
               <span class="porthole__dome" aria-hidden="true"></span>
             </div>
 
-            <div class="grille" aria-hidden="true">
-              <span class="grille__slot"></span>
-              <span class="grille__slot"></span>
-              <span class="grille__slot"></span>
+            <div class="ribs" aria-hidden="true">
+              <span class="rib"></span>
+              <span class="rib"></span>
+              <span class="rib"></span>
             </div>
           </div>
 

@@ -6,8 +6,12 @@
 .deck {
   position: relative;
   width: 100%;
-  /* Headroom for the keys, which stand on the top edge rather than the face. */
-  margin-top: 2.4rem;
+  /* Headroom for the keys and the extended microphone, both of which stand
+     above the top edge rather than on the face. */
+  margin-top: 3.4rem;
+  /* The wedge end is about a third of the real toy, so it gets its own column
+     rather than hanging off the left edge. */
+  padding-left: 4.9rem;
   filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.5));
 }
 
@@ -256,7 +260,7 @@
   box-shadow: 0 0 5px rgba(232, 80, 58, 0.7);
 }
 
-/* ---------- The face: wordmark, swoosh, porthole, grille ---------- */
+/* ---------- The face: wordmark, swoosh, porthole, ribs ---------- */
 
 .face {
   position: relative;
@@ -300,7 +304,8 @@
 
 .wordmark__tm {
   align-self: flex-end;
-  margin-top: -0.5rem;
+  /* Clear of the script's descender. */
+  margin: -0.2rem -0.55rem 0 0;
   font-size: 0.5rem;
 }
 
@@ -390,8 +395,8 @@
   stroke-width: 3;
 }
 
-/* Three moulded speaker slots along the bottom-left of the face. */
-.grille {
+/* Three moulded ribs across the bottom-left of the face. */
+.ribs {
   position: absolute;
   z-index: 2;
   left: 0.6rem;
@@ -402,19 +407,19 @@
   width: 50%;
 }
 
-.grille__slot {
+.rib {
   height: 0.62rem;
   border-radius: 2px;
   background: linear-gradient(180deg, #3c4045, #22262a);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.75), 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* The slots taper to follow the sweep of the case. */
-.grille__slot:nth-child(2) {
+/* The ribs taper to follow the sweep of the case. */
+.rib:nth-child(2) {
   width: 96%;
 }
 
-.grille__slot:nth-child(3) {
+.rib:nth-child(3) {
   width: 84%;
   margin-left: 8%;
 }
@@ -506,65 +511,186 @@
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* ---------- Flip-out microphone ---------- */
+/* ---------- The telescoping microphone ---------- */
 
 .mic {
   position: absolute;
-  z-index: 2;
-  /* Hinged off the left edge, low enough to clear the wordmark. */
-  top: 5.4rem;
-  right: calc(100% - 1.5rem);
-  width: 5rem;
+  /* Behind the body, so it reads as sliding out of a slot in the case. */
+  z-index: 0;
+  right: 1rem;
+  bottom: calc(100% - 3.9rem);
+  width: 1.1rem;
   height: 5rem;
-  transform-origin: 100% 24%;
-  transform: rotate(-9deg);
-  transition: transform 0.45s cubic-bezier(0.34, 1.3, 0.64, 1);
+  transform-origin: 50% 100%;
+  transform: rotate(36deg);
 }
 
-/* The paddle itself: a silver flap hinged off the left edge of the case. */
-.mic__panel {
+.mic__boom {
   position: absolute;
   inset: 0;
-  border-radius: 5px 5px 9px 22px;
-  background: linear-gradient(118deg, #d4d8dc, #a7acb2 46%, #cdd1d5 78%, #90959b);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.25),
-    -3px 3px 8px rgba(0, 0, 0, 0.35);
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(90deg, #2b2e32 0%, #5d6167 34%, #43474c 62%, #24272b 100%);
+  box-shadow: 1px 0 2px rgba(0, 0, 0, 0.45);
+  transition: transform 0.5s cubic-bezier(0.3, 1.15, 0.6, 1);
+  transform-origin: 50% 100%;
 }
 
-.mic__capsule {
+/*
+ * The far end of the boom is notched, which is what you grip to pull it out.
+ */
+.mic__tip {
   position: absolute;
-  right: -0.55rem;
-  bottom: 0.35rem;
-  width: 2.9rem;
-  height: 2.9rem;
-  border-radius: 50%;
-  background: radial-gradient(circle at 36% 28%, #55595f, #24272b 72%);
+  left: -0.12rem;
+  top: -0.1rem;
+  width: 1.34rem;
+  height: 1.15rem;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(180deg, #4e5257 0 3px, #2a2d31 3px 5px),
+    #3a3d41;
+  box-shadow: 1px -1px 3px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: transform 0.5s cubic-bezier(0.3, 1.15, 0.6, 1);
+}
+
+/* Slid out to full extension while the tape is rolling in record. */
+.deck--recording .mic__boom {
+  transform: scaleY(1.5);
+}
+
+.deck--recording .mic__tip {
+  transform: translateY(-2.5rem);
+}
+
+/* ---------- The wedge end: handle and speaker ---------- */
+
+.side {
+  position: absolute;
+  /* Behind the body, so the wedge reads as the case's own left end rather than
+     a shape stuck on top of it. */
+  z-index: 0;
+  left: 0;
+  top: 2.6rem;
+  width: 6.5rem;
+  height: 8.8rem;
+}
+
+/*
+ * The wedge. The left end of the case flares out into a big angled facet that
+ * tapers to a blunt point at the bottom left, and the speaker is mounted on it.
+ */
+.prow {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(100% 0, 100% 94%, 54% 100%, 4% 74%, 4% 34%, 38% 0);
+  background: linear-gradient(
+    112deg,
+    #92979e 0%,
+    #b9bec4 12%,
+    #e9ecee 30%,
+    #c6cbd0 44%,
+    #a2a7ad 56%,
+    #d2d6da 76%,
+    #a8adb3 100%
+  );
+  filter: drop-shadow(-3px 4px 6px rgba(0, 0, 0, 0.42));
+}
+
+/* The moulded ridge where the two faces of the wedge meet. */
+.prow::after {
+  content: '';
+  position: absolute;
+  left: 38%;
+  top: 4%;
+  bottom: 10%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(255, 255, 255, 0.8) 16%,
+    rgba(255, 255, 255, 0.45) 72%,
+    transparent
+  );
+}
+
+/*
+ * The carry handle: a flat slab that folds up off the top of the wedge, with
+ * clear daylight between it and the case.
+ */
+.handle {
+  position: absolute;
+  left: 1.1rem;
+  top: -1.4rem;
+  width: 4.4rem;
+  height: 1.6rem;
+  border-radius: 5px;
+  background: linear-gradient(168deg, #dfe3e6, #b0b5bb 52%, #8d9299);
   box-shadow:
-    inset 0 0 0 2px #6f747a,
-    inset 0 2px 3px rgba(255, 255, 255, 0.18),
-    0 3px 7px rgba(0, 0, 0, 0.45);
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.22),
+    -2px 3px 6px rgba(0, 0, 0, 0.4);
+  transform-origin: 92% 100%;
+  transform: rotate(-22deg);
+}
+
+/*
+ * The speaker is a gunmetal cylinder standing off the wedge — from this angle
+ * you see the whole barrel wall as well as the perforated face.
+ */
+.speaker {
+  position: absolute;
+  left: 0.15rem;
+  bottom: 0.8rem;
+  width: 4.6rem;
+  height: 4.6rem;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #969aa0 0%, #7c8086 40%, #62666b 100%);
+  box-shadow:
+    /* The barrel, thrown down and to the left, in the same grey as the face. */
+    -2px 3px 0 -1px #6b6f75,
+    -4px 6px 0 -2px #5a5e63,
+    -6px 8px 0 -3px #4b4f54,
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.35),
+    -7px 10px 12px rgba(0, 0, 0, 0.45);
   display: grid;
   place-items: center;
 }
 
-/* The perforated grille over the element. */
-.mic__holes {
-  width: 1.9rem;
-  height: 1.9rem;
+/* The moulded lip around the rim of the barrel. */
+.speaker::before {
+  content: '';
+  position: absolute;
+  inset: 0.16rem;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at center, #0d0f11 1.1px, transparent 1.2px) 0 0 / 0.42rem 0.42rem,
-    radial-gradient(circle at center, #0d0f11 1.1px, transparent 1.2px) 0.21rem 0.21rem / 0.42rem 0.42rem;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
 }
 
-/* Swung fully open while the tape is rolling in record. */
-.mic--extended {
-  transform: rotate(-30deg) translateX(-0.5rem);
+/*
+ * The perforations: a loose grid of fairly big round holes punched through the
+ * middle of the face, with plenty of metal showing between them.
+ */
+.speaker__holes {
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #191b1e 2.6px, transparent 2.8px) 0 0 / 0.58rem 0.52rem,
+    radial-gradient(circle at center, #1e2023 2.4px, transparent 2.6px) 0.29rem 0.26rem / 0.58rem 0.52rem;
 }
 
 /* ---------- Motion while the tape runs ---------- */
+
+/* The cone works while there is sound coming out of it. */
+.deck--rolling .speaker__holes {
+  animation: cone 0.4s ease-in-out infinite;
+}
+
+@keyframes cone {
+  50% {
+    transform: scale(1.035);
+  }
+}
+
 
 .deck--rolling .porthole {
   box-shadow:
@@ -585,9 +711,8 @@
 /* ---------- Narrow screens ---------- */
 
 @media (max-width: 420px) {
-  .stage {
-    /* The mic paddle hangs off the left, so the toy needs the room. */
-    padding-left: 1.4rem;
+  .deck {
+    padding-left: 3.9rem;
   }
 
   .wordmark__name {
@@ -603,20 +728,32 @@
     min-height: 8.2rem;
   }
 
-  .mic {
-    width: 4.4rem;
-    height: 4.4rem;
+  .side {
+    width: 5.2rem;
+    height: 7.2rem;
     top: 2.2rem;
   }
 
-  .mic__capsule {
-    width: 2.3rem;
-    height: 2.3rem;
+  .speaker {
+    width: 3.7rem;
+    height: 3.7rem;
   }
 
-  .mic__holes {
-    width: 1.5rem;
-    height: 1.5rem;
+  .speaker__holes {
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .handle {
+    width: 3.5rem;
+    height: 1.35rem;
+    left: 0.9rem;
+  }
+
+  .mic {
+    right: 0.7rem;
+    height: 4.2rem;
+    bottom: calc(100% - 3.5rem);
   }
 
   .key__name {
