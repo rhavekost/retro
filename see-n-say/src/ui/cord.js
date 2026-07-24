@@ -1,3 +1,5 @@
+import { classifyRelease } from '../../../shared/ui/drag.js';
+
 /**
  * The pull-cord. Drag the ring down past the threshold (or press it) and it
  * snaps back with a ratchet, firing `onPull`.
@@ -55,17 +57,10 @@ export const createCord = (root, onPull) => {
     dragging = false;
     root.classList.remove('cord--dragging');
 
-    if (offset >= TRIGGER_AT) {
-      settle(true);
-      return;
-    }
-    // A tap is a pull too — plenty of people click the ring instead of
-    // dragging it, and silently doing nothing reads as broken.
-    if (offset < TAP_SLOP) {
-      animatedPull();
-      return;
-    }
-    settle(false);
+    const verdict = classifyRelease(offset, { trigger: TRIGGER_AT, slop: TAP_SLOP });
+    if (verdict === 'fire') settle(true);
+    else if (verdict === 'tap') animatedPull();
+    else settle(false);
   };
 
   ring.addEventListener('pointerdown', (event) => {
