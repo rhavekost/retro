@@ -75,6 +75,17 @@ Two rules there are easy to get wrong and are pinned by `test/speak-and-math.tes
 division is generated backwards from a known quotient so it is always exact, and
 subtraction operands are ordered largest-first so the answer never goes negative.
 
+## Simon (`/simon/`)
+
+Watch the sequence, repeat it, watch it grow. Four skill levels — 8, 14, 20 or
+31 signals to win.
+
+The rules live in `simon/src/game/sequence.js` and are pure: randomness is
+injected, so the whole state machine is exercised by `test/simon.test.js`
+without a browser. The four tone frequencies are the ones the original used;
+they are mutually consonant, which is why an arbitrary sequence still sounds
+like music.
+
 ## Running it
 
 ```bash
@@ -97,6 +108,7 @@ speak-and-spell/        the spelling console
 see-n-say/              the pull-cord wheel
 talkboy/                the cassette recorder
 speak-and-math/         the arithmetic console
+simon/                  the four-quadrant memory game
 shared/
   audio/                AudioContext, synthesis primitives, beeps
   display/              14-segment geometry + the N-cell display

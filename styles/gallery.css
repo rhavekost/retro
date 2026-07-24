@@ -381,6 +381,37 @@ body {
   background: #d7d3ca;
 }
 
+/* Simon: the four-quadrant disc. */
+.thumb--simon {
+  background: linear-gradient(165deg, #26282c, #131417);
+  display: grid;
+  place-items: center;
+}
+
+.thumb__disc {
+  position: absolute;
+  width: 138px;
+  height: 138px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #3ea64f 0 90deg,
+    #cf3730 90deg 180deg,
+    #e8c22e 180deg 270deg,
+    #2f6dbc 270deg 360deg
+  );
+  box-shadow: 0 0 0 8px #17181b, 0 10px 22px rgba(0, 0, 0, 0.5);
+}
+
+.thumb--simon .thumb__hub {
+  position: absolute;
+  z-index: 1;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #1d1f22;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
 .thumb--empty {
   display: grid;
   place-items: center;

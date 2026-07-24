@@ -51,4 +51,14 @@ export const TOYS = Object.freeze([
     thumb: 'snm',
     parts: ['thumb__handle', 'thumb__screen', 'thumb__panel'],
   },
+  {
+    slug: 'simon',
+    title: 'Simon',
+    year: '1978',
+    blurb:
+      'Watch the lights, repeat the sequence, watch it get one longer. Four tones chosen to be consonant, so it never sounds wrong.',
+    tech: 'Deterministic rule engine · Web Audio tones · four skill levels',
+    thumb: 'simon',
+    parts: ['thumb__disc', 'thumb__hub'],
+  },
 ]);
