@@ -203,6 +203,54 @@ Ready to merge to main.
 
 ---
 
+# Etch A Sketch — progress ledger
+
+Plan: docs/superpowers/plans/2026-07-23-etch-a-sketch.md
+Branch: etch-a-sketch
+Base: c428d4d (= main, after Simon)
+
+Clean, self-contained plan — no pre-flight corrections needed (Task 7/gallery
+skipped per standing practice). Note: unlike shared-foundations' ledger
+anticipated, this plan does NOT consume shared/ui/drag.js for the knobs —
+knob rotation is angle maths (createKnob in etch-a-sketch/src/ui/knobs.js),
+a different model than drag.js's linear tap/fire/cancel classification.
+Legitimate design choice, not a defect; drag.js remains unconsumed pending
+Lite-Brite.
+
+## Tasks — all six approved clean, no controller fixes needed
+Task 1 (stylus+knob maths): commits c428d4d..a580f40, review Approved.
+  Reviewer hand-verified both trapdoor mechanics (4-edge clamping,
+  rotationDelta's 350->10 = +20 zero-crossing) by direct calculation.
+  Minor, no action (plan-mandated): move() returns a live reference for
+  `from`, not a defensive copy; harmless since no consumer mutates it.
+Task 2 (canvas screen): commits a580f40..a008a55, review Approved.
+  Minor, no action (plan-mandated): comment says "~12 frames," loop runs 14.
+Task 3 (knobs UI): commits a008a55..4dfc2c4, review Approved.
+  Important flagged but resolved by Task 5's markup (native <button>
+  elements are focusable by default) — confirmed in Task 5's review.
+Task 4 (scrape audio): commits 4dfc2c4..be431a8, review Approved.
+Task 5 (wiring): commits be431a8..ec78ccb, review Approved. Confirmed knob
+  buttons are native <button>s (resolves Task 3's focusability flag) and
+  every main.js call site matches the real (already-landed) module exports,
+  not just the brief's assumptions.
+Task 6 (styling): commits ec78ccb..36c1396, review Approved.
+
+## Live browser verification (controller)
+Full render (red shell, grey screen, two knobs, wordmark) correct on first
+load. Dragging the left knob rotated it visibly and drew a horizontal line;
+dragging the right knob continued the line vertically with no gap at the
+join (the exact behavior the plan's Global Constraints call out as the
+point of the whole toy). Shake to erase: frame animation ran, drawing faded
+to nothing, button correctly re-enabled after. No console errors at any
+point. Gallery card verified (6 toys + placeholder, thumbnail renders).
+
+Tooling note: the Browser pane's screenshot tool got stuck on the tab that
+had loaded this toy's canvas; a fresh tab resolved it immediately. Recorded
+in case it recurs — not an app bug (page state was confirmed fine via
+read_page/JS while screenshot was stuck).
+
+---
+
 # Simon — progress ledger
 
 Plan: docs/superpowers/plans/2026-07-23-simon.md
