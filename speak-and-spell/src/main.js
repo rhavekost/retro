@@ -4,12 +4,16 @@
 import { createDisplay } from '../../shared/display/display.js';
 import { createKeypad, codeForKeyboardEvent } from '../../shared/ui/keypad.js';
 import { SPEAK_AND_SPELL_ROWS } from './ui/layout.js';
-import { createConsole } from './game/console.js';
-import { createMachine } from './game/machine.js';
-import { setMuted, isVoiceSupported, cancelSpeech } from './audio/voice.js';
+import { createConsole } from '../../shared/game/console.js';
+import { createMachine } from '../../shared/game/machine.js';
+import { setMuted, isVoiceSupported, cancelSpeech } from '../../shared/audio/voice.js';
 import { setBeepsMuted } from '../../shared/audio/beeps.js';
 import { unlockAudio, isAudioSupported } from '../../shared/audio/context.js';
 import { LEVEL_NAMES } from './data/words.js';
+import { createSpellMode } from './game/modes/spell.js';
+import { createMysteryMode } from './game/modes/mystery.js';
+import { createLetterMode } from './game/modes/letter.js';
+import { createSecretMode } from './game/modes/secret.js';
 
 const display = createDisplay(document.querySelector('#vfd'));
 const io = createConsole(display);
@@ -34,6 +38,15 @@ const keypad = createKeypad(document.querySelector('#keypad'), {
 });
 
 const machine = createMachine(io, {
+  modes: {
+    SPELL: createSpellMode,
+    MYSTERY: createMysteryMode,
+    LETTER: createLetterMode,
+    SECRET: createSecretMode,
+  },
+  initialMode: 'SPELL',
+  levels: LEVEL_NAMES,
+  powerOnMessage: 'SPEAK AND SPELL',
   onStateChange: (state) => {
     shell.classList.toggle('device--on', state.powered);
     shell.classList.toggle('device--busy', state.busy);

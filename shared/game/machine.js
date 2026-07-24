@@ -5,36 +5,25 @@
  * The device is single-threaded like the original: while it is talking, the
  * keypad is inert apart from OFF.
  */
-import { createSpellMode } from './modes/spell.js';
-import { createMysteryMode } from './modes/mystery.js';
-import { createLetterMode } from './modes/letter.js';
-import { createSecretMode } from './modes/secret.js';
-import { powerOnBeep, powerOffBeep, keyBeep } from '../../../shared/audio/beeps.js';
+import { powerOnBeep, powerOffBeep, keyBeep } from '../audio/beeps.js';
 import { cancelSpeech } from '../audio/voice.js';
-import { LEVEL_NAMES } from '../data/words.js';
 
-const MODE_KEYS = new Set(['SPELL', 'MYSTERY', 'SECRET', 'LETTER']);
-
-export const createMachine = (io, { onStateChange } = {}) => {
-  const state = { powered: false, busy: false, level: 'A', modeId: 'SPELL' };
+/**
+ * Routes keypresses for a turn-taking console.
+ *
+ * The toy supplies its own modes and levels; this module only knows about
+ * power, the one-action-at-a-time lock, and which key selects which mode.
+ */
+export const createMachine = (
+  io,
+  { modes, initialMode, levels = [], powerOnMessage = '', onStateChange } = {},
+) => {
+  const state = { powered: false, busy: false, level: levels[0] ?? null, modeId: initialMode };
   let mode = null;
 
   const publish = () => onStateChange?.({ ...state });
 
-  const buildMode = (id) => {
-    const options = { level: state.level };
-    switch (id) {
-      case 'MYSTERY':
-        return createMysteryMode(io, options);
-      case 'SECRET':
-        return createSecretMode(io, options);
-      case 'LETTER':
-        return createLetterMode(io, options);
-      case 'SPELL':
-      default:
-        return createSpellMode(io, options);
-    }
-  };
+  const buildMode = (id) => modes[id](io, { level: state.level });
 
   /** Serialises everything: one action at a time, keypad frozen meanwhile. */
   const run = async (action) => {
@@ -64,8 +53,8 @@ export const createMachine = (io, { onStateChange } = {}) => {
     publish();
     io.display.setPowered(true);
     await powerOnBeep();
-    await io.announce('SPEAK AND SPELL', { speech: 'Speak and spell.' });
-    await switchTo('SPELL');
+    if (powerOnMessage) await io.announce(powerOnMessage, { speech: powerOnMessage });
+    await switchTo(initialMode);
   };
 
   const powerOff = async () => {
@@ -78,7 +67,7 @@ export const createMachine = (io, { onStateChange } = {}) => {
   };
 
   const setLevel = async (level) => {
-    if (!LEVEL_NAMES.includes(level)) return;
+    if (!levels.includes(level)) return;
     state.level = level;
     publish();
     if (!state.powered) return;
@@ -111,7 +100,7 @@ export const createMachine = (io, { onStateChange } = {}) => {
     // succession.
     if (mode?.handleInput?.(code)) return;
 
-    if (MODE_KEYS.has(code)) {
+    if (Object.hasOwn(modes, code)) {
       run(() => switchTo(code));
       return;
     }

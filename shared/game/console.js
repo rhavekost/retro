@@ -3,7 +3,7 @@
  * beep. Display and speech run together so the scroll and the voice line up.
  */
 import { say, spellOut, repeatLast } from '../audio/voice.js';
-import { correctBeep, wrongBeep, fanfare } from '../../../shared/audio/beeps.js';
+import { correctBeep, wrongBeep, fanfare } from '../audio/beeps.js';
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
