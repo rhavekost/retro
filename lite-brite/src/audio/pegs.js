@@ -5,7 +5,9 @@
 import { getAudio, getMaster } from '../../../shared/audio/context.js';
 import { tone, noise } from '../../../shared/audio/synth.js';
 
-let lastAt = 0;
+// -Infinity, not 0: ctx.currentTime starts near 0 too, so a literal 0 here
+// would throttle away the very first peg click of a session.
+let lastAt = -Infinity;
 
 export const pegClick = (colorId) => {
   const ctx = getAudio();

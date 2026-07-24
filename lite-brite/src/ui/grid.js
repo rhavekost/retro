@@ -25,6 +25,11 @@ export const createGrid = (mount, { cells, onPaint }) => {
 
       hole.addEventListener('pointerdown', (event) => {
         event.preventDefault();
+        // A touch pointer is implicitly captured by its target element,
+        // which would suppress pointerenter on every other hole for the
+        // rest of the gesture — releasing it lets drag-to-paint work with
+        // a finger, not just a mouse.
+        hole.releasePointerCapture?.(event.pointerId);
         painting = true;
         onPaint(index);
       });
