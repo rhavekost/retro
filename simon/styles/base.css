@@ -17,3 +17,35 @@ body {
     radial-gradient(circle at 50% 16%, var(--backdrop-2), var(--backdrop) 62%),
     var(--backdrop);
 }
+
+/* The level chips: shared/styles/frame.css lays out .levels-wrap/.levels,
+   but leaves .levels-label and .level itself to each toy. */
+.levels-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.65);
+}
+
+.level {
+  font: inherit;
+  font-weight: 700;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.45rem;
+  border: 2px solid rgba(232, 228, 220, 0.25);
+  background: transparent;
+  color: rgba(232, 228, 220, 0.8);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.level:hover {
+  border-color: rgba(232, 228, 220, 0.6);
+}
+
+.level[aria-pressed='true'] {
+  background: var(--simon-yellow);
+  border-color: var(--simon-yellow);
+  color: var(--shell);
+}

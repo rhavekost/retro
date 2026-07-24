@@ -69,15 +69,23 @@ async function handlePress(color) {
   if (state.busy || !state.playing) return;
   ensureUnlocked();
 
+  // Lock the panels the instant the verdict is known, not after the sound
+  // finishes — otherwise a press landing during that ~200ms window could
+  // call game.press() again against a cursor the machine already moved past.
+  state.busy = true;
+  panels.setInteractive(false);
+
   const { verdict, expected } = game.press(color);
   panels.light(color, 220);
   await playColor(color, { duration: 0.18 });
 
-  if (verdict === 'correct') return;
+  if (verdict === 'correct') {
+    state.busy = false;
+    panels.setInteractive(true);
+    return;
+  }
 
   if (verdict === 'wrong') {
-    state.busy = true;
-    panels.setInteractive(false);
     await playFailure();
     await panels.flashAll(2);
     await endGame(`Wrong — that was ${expected}. You reached ${game.sequence().length - 1}.`);
@@ -86,8 +94,6 @@ async function handlePress(color) {
   }
 
   if (verdict === 'won') {
-    state.busy = true;
-    panels.setInteractive(false);
     await panels.flashAll(5);
     await endGame(`You won at level ${state.level} — all ${WIN_LENGTHS[state.level]} signals.`);
     state.busy = false;
@@ -95,7 +101,6 @@ async function handlePress(color) {
   }
 
   // round-complete
-  state.busy = true;
   await wait(700);
   state.busy = false;
   await nextRound();
