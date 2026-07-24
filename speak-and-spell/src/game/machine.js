@@ -9,7 +9,7 @@ import { createSpellMode } from './modes/spell.js';
 import { createMysteryMode } from './modes/mystery.js';
 import { createLetterMode } from './modes/letter.js';
 import { createSecretMode } from './modes/secret.js';
-import { powerOnBeep, powerOffBeep, keyBeep } from '../audio/beeps.js';
+import { powerOnBeep, powerOffBeep, keyBeep } from '../../../shared/audio/beeps.js';
 import { cancelSpeech } from '../audio/voice.js';
 import { LEVEL_NAMES } from '../data/words.js';
 

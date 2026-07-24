@@ -2,8 +2,8 @@
  * The blips. Key clicks, the rising "correct" arpeggio, the buzzy "wrong",
  * and the power-on chirp — all square waves, as the hardware would have it.
  */
-import { getAudio, getMaster } from '../../../shared/audio/context.js';
-import { tone } from '../../../shared/audio/synth.js';
+import { getAudio, getMaster } from './context.js';
+import { tone } from './synth.js';
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

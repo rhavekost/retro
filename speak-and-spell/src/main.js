@@ -6,7 +6,7 @@ import { createKeypad, codeForKeyboardEvent } from './ui/keypad.js';
 import { createConsole } from './game/console.js';
 import { createMachine } from './game/machine.js';
 import { setMuted, isVoiceSupported, cancelSpeech } from './audio/voice.js';
-import { setBeepsMuted } from './audio/beeps.js';
+import { setBeepsMuted } from '../../shared/audio/beeps.js';
 import { unlockAudio, isAudioSupported } from '../../shared/audio/context.js';
 import { LEVEL_NAMES } from './data/words.js';
 
