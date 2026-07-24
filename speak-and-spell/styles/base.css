@@ -28,24 +28,15 @@ body {
 }
 
 body {
-  font-family: var(--font-display);
   color: #e8e4dc;
   background:
     radial-gradient(circle at 50% 18%, var(--backdrop-2), var(--backdrop) 65%),
     var(--backdrop);
-  display: flex;
-  justify-content: center;
-  padding: clamp(1rem, 3vw, 2.5rem) 1rem 3rem;
 }
 
 .stage {
-  width: 100%;
   /* Narrow enough that the console stays taller than it is wide. */
   max-width: 470px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25rem;
 }
 
 /* ---------- Controls below the toy ---------- */
@@ -58,23 +49,12 @@ body {
   justify-content: center;
 }
 
-.levels-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .levels-label,
 .mute {
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(232, 228, 220, 0.65);
-}
-
-.levels {
-  display: flex;
-  gap: 0.35rem;
 }
 
 .level {
@@ -114,11 +94,6 @@ body {
 }
 
 .notice {
-  margin: 0;
-  max-width: 44ch;
-  text-align: center;
-  font-size: 0.85rem;
-  line-height: 1.5;
   color: var(--panel-yellow);
 }
 
@@ -155,7 +130,6 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid var(--vfd-glow);
   outline-offset: 2px;
 }
 
@@ -170,12 +144,5 @@ body {
 
   .console-controls {
     gap: 0.8rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
   }
 }

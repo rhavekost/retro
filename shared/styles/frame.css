@@ -1,0 +1,146 @@
+/**
+ * The furniture every toy page shares: a centred column, a title, a status
+ * pill, chunky buttons and a level picker. Toy-specific chrome stays in that
+ * toy's own stylesheet.
+ */
+body {
+  font-family: var(--font-display);
+  color: #ece8e0;
+  margin: 0;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem) 1rem 3rem;
+}
+
+.stage {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--plastic);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.caption,
+.status {
+  margin: 0;
+  min-height: 2.4rem;
+  display: grid;
+  place-items: center;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--plastic);
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  font-weight: 600;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  font: inherit;
+  font-weight: 700;
+  color: #2a2118;
+  background: var(--toy-yellow);
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #b8871a, 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.button:hover:not(:disabled) { transform: translateY(-1px); }
+
+.button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #b8871a, 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.button--quiet {
+  background: transparent;
+  color: rgba(236, 232, 224, 0.8);
+  border: 2px solid rgba(236, 232, 224, 0.25);
+  box-shadow: none;
+}
+
+.button--quiet:hover:not(:disabled) { border-color: rgba(236, 232, 224, 0.6); }
+
+.levels-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.levels { display: flex; gap: 0.35rem; }
+
+.levels-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(236, 232, 224, 0.65);
+}
+
+.level {
+  font: inherit;
+  font-weight: 700;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.45rem;
+  border: 2px solid rgba(236, 232, 224, 0.25);
+  background: transparent;
+  color: rgba(236, 232, 224, 0.8);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.level:hover { border-color: rgba(236, 232, 224, 0.6); }
+
+.level[aria-pressed='true'] {
+  background: var(--toy-yellow);
+  border-color: var(--toy-yellow);
+  color: #2a2118;
+}
+
+.hint,
+.notice {
+  margin: 0;
+  max-width: 44ch;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(236, 232, 224, 0.7);
+}
+
+.notice { color: var(--toy-yellow); }
+
+:focus-visible {
+  outline: 3px solid var(--vfd-glow);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
