@@ -203,6 +203,64 @@ Ready to merge to main.
 
 ---
 
+# Lite-Brite — progress ledger
+
+Plan: docs/superpowers/plans/2026-07-23-lite-brite.md
+Branch: lite-brite
+Base: e6d101c (= main, after Etch A Sketch)
+
+Clean, self-contained plan — no pre-flight corrections needed (Task 6/gallery
+skipped per standing practice). Same design note as Etch A Sketch: grid.js
+implements its own simple paint-state tracking rather than consuming
+shared/ui/drag.js — a continuous multi-cell paint operation doesn't fit
+drag.js's single-gesture tap/fire/cancel model. drag.js now remains
+unconsumed by any of the four toys built this session; worth a human look
+at whether it's dead code, but out of scope for this task.
+
+## Tasks
+Task 1 (board model + codec): commits e6d101c..7e67e4e, review Approved.
+  Reviewer hand-traced the codec's hardest property (round-trip stability)
+  against a real board and confirmed exact reproduction.
+Task 2 (hole grid): commits 7e67e4e..4f3484b, review Needs fixes -> fixed.
+  - Important: painting relies entirely on pointerenter to continue across
+    holes during a drag, but a touch pointer is implicitly captured by its
+    pointerdown target, suppressing pointerenter on every other element for
+    the rest of that touch gesture — drag-to-paint would only ever paint
+    the first hole touched on a touchscreen. Fixed by releasing pointer
+    capture on pointerdown (commit e7c58b1).
+Task 3 (palette + pegs audio): commits 4f3484b..7f1aba3, review Approved
+  with a fix bundled in.
+  - Minor (fixed alongside Task 2's, same commit e7c58b1): pegClick's rate
+    limiter initialized lastAt to 0, but ctx.currentTime also starts near 0
+    when the AudioContext is first lazily created — if pegClick itself
+    triggers that creation, the very first peg of a session could be
+    silently throttled away. Changed to -Infinity.
+Task 4 (wiring + URL sharing): commits 7f1aba3..cbc4072, review Approved.
+  Reviewer independently verified decode()'s malformed-input resilience and
+  that grid.js's repaint functions take cells as a parameter (not a stale
+  closure), so the Clear handler's board reassignment is correctly picked
+  up.
+Task 5 (styling): commits e7c58b1..fd3bc3d, review Approved. Confirmed the
+  --peg/--cols CSS variable contract between grid.js/palette.js (JS-owned)
+  and board.css (consumes only, never redefines) has no conflict.
+
+## Live browser verification (controller)
+Full render (red box, dimpled hole grid, 8 swatches + eraser). Selected a
+color, dragged across holes — painted (some intermediate holes missed due
+to the Browser pane's drag-tool granularity, not the app's touch-capture
+fix, which is what the fix specifically targets). Eraser correctly un-lit a
+painted peg (verified via direct pointerdown dispatch after visually
+confirming a UI-coordinate mismatch was a tool/scaling issue, not a bug).
+**The critical URL round-trip**: grabbed the live hash after painting
+2 pegs (#.153C.8H.453), opened it in a completely fresh tab — identical
+picture loaded (same 2 cells, same colors), status correctly read "Loaded a
+shared picture." Clear board: URL shortened to #.616 (single empty run),
+0 lit pegs, status "Board cleared." No console errors at any point.
+Gallery card verified (7 toys + placeholder, glowing-dots thumbnail
+renders).
+
+---
+
 # Etch A Sketch — progress ledger
 
 Plan: docs/superpowers/plans/2026-07-23-etch-a-sketch.md
