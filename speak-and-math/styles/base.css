@@ -75,8 +75,8 @@ body {
 }
 
 .level[aria-pressed='true'] {
-  background: var(--panel-yellow);
-  border-color: var(--panel-yellow);
+  background: var(--panel-blue);
+  border-color: var(--panel-blue);
   color: var(--ink);
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .notice {
-  color: var(--panel-yellow);
+  color: var(--panel-blue);
 }
 
 /* ---------- Instructions ---------- */
@@ -125,7 +125,7 @@ body {
 }
 
 .guide strong {
-  color: var(--panel-yellow);
+  color: var(--panel-blue);
   font-weight: 700;
 }
 
