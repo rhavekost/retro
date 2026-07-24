@@ -5,8 +5,8 @@ no build step — plain ES modules, SVG, Web Audio and the Web Speech API.
 
 Live at **<https://rhavekost.github.io/retro/>**.
 
-The root page is a gallery; each toy lives in its own directory and is entirely
-self-contained apart from the shared audio primitives.
+The root page is a gallery; each toy lives in its own directory and draws on a
+shared layer for audio, display, UI components, and styling.
 
 ## Speak & Spell (`/speak-and-spell/`)
 
@@ -78,30 +78,35 @@ the GitHub Pages URL.
 ## Layout
 
 ```
-index.html              the gallery
+index.html              the gallery (rendered from shared/data/toys.js)
+src/gallery.js          builds the shelf
 styles/gallery.css      gallery styling; the thumbnails are pure CSS
-speak-and-spell/
-  src/display/          14-segment geometry + the 8-cell VFD
-  src/game/             machine.js routes keys; modes/ holds the four games
-  src/audio/            voice.js (speech), beeps.js (blips)
-  src/ui/keypad.js      membrane keypad + physical-keyboard mapping
-  src/data/words.js     spelling lists, levels A–D
-see-n-say/              the pull-cord wheel, self-contained
-talkboy/
-  src/tape/             tape.js (the medium), recorder.js (mic), transport.js
-  src/audio/mechanics.js  key thunks, spool motor, tape hiss
-  src/ui/               reels.js (SVG cassette), readout.js (counter + meter)
-shared/audio/           AudioContext + synthesis primitives, used by every toy
-shared/styles/          the "all toys" pill every toy page carries
+test/                   node --test specs for pure logic
+speak-and-spell/        the spelling console
+see-n-say/              the pull-cord wheel
+talkboy/                the cassette recorder
+shared/
+  audio/                AudioContext, synthesis primitives, beeps
+  display/              14-segment geometry + the N-cell display
+  ui/                   keypad (layout-driven), drag handle
+  data/toys.js          the gallery manifest
+  styles/               design tokens + the "all toys" pill
 ```
 
 ## Adding another toy
 
-Create a directory, drop an `index.html` in it, import anything you need from
-`../shared/audio/`, and add a card to the root `index.html`. Link
-`../shared/styles/backlink.css` **last** and paste in the back-link anchor so
-the toy has a way home. Keep every path relative — GitHub Pages serves this
-project from a subpath, so absolute paths starting with `/` will break.
+1. Create a directory with an `index.html`.
+2. Link `../shared/styles/tokens.css` first, then `../shared/styles/frame.css`,
+   your toy's stylesheets, and `../shared/styles/backlink.css` last. Paste in
+   the back-link anchor.
+3. Import what you need from `../shared/` — don't fork it.
+4. Add an entry to `shared/data/toys.js` and a `.thumb--<name>` rule in
+   `styles/gallery.css`.
+5. Put pure logic in modules that never touch `window` or `document`, and add
+   a spec under `test/`. Run `npm test`.
+
+Keep every path relative — GitHub Pages serves this project from a subpath, so
+absolute paths starting with `/` will break.
 
 ## Notes
 
