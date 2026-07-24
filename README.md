@@ -64,6 +64,17 @@ flick the speed switch to **Slow** and hit `PLAY`.
 Recording needs microphone permission. Nothing is uploaded — the audio never
 leaves the page, and the tape is gone when you close the tab.
 
+## Speak & Math (`/speak-and-math/`)
+
+Speak & Spell's chassis with arithmetic in it — the same display, machine and
+voice, a numeric keypad, and three activities: Solve It, greater-or-less, and
+Number Stumper.
+
+Problem generation is pure and lives in `speak-and-math/src/data/problems.js`.
+Two rules there are easy to get wrong and are pinned by `test/speak-and-math.test.js`:
+division is generated backwards from a known quotient so it is always exact, and
+subtraction operands are ordered largest-first so the answer never goes negative.
+
 ## Running it
 
 ```bash
@@ -85,6 +96,7 @@ test/                   node --test specs for pure logic
 speak-and-spell/        the spelling console
 see-n-say/              the pull-cord wheel
 talkboy/                the cassette recorder
+speak-and-math/         the arithmetic console
 shared/
   audio/                AudioContext, synthesis primitives, beeps
   display/              14-segment geometry + the N-cell display

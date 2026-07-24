@@ -41,4 +41,14 @@ export const TOYS = Object.freeze([
       { cls: 'thumb__porthole', children: ['thumb__reel'] },
     ],
   },
+  {
+    slug: 'speak-and-math',
+    title: 'Speak & Math',
+    year: '1980',
+    blurb:
+      'The same red console asking arithmetic instead of spelling. Solve It, greater-or-less, and equations with a number missing.',
+    tech: 'Shared VFD and console machine · exact-division generator',
+    thumb: 'snm',
+    parts: ['thumb__handle', 'thumb__screen', 'thumb__panel'],
+  },
 ]);

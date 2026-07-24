@@ -215,6 +215,33 @@ body {
   border-radius: 2px;
 }
 
+/* Speak & Math: the same slab with a blue keypad. */
+.thumb--snm {
+  background: linear-gradient(165deg, #2a2b2f, #17181b);
+  display: grid;
+  place-items: center;
+}
+
+.thumb--snm::before {
+  content: '';
+  position: absolute;
+  width: 132px;
+  height: 138px;
+  border-radius: 12px 12px 9px 9px;
+  background: linear-gradient(158deg, #e8574a, var(--case-red) 40%, var(--case-red-dark));
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+.thumb--snm .thumb__panel {
+  background: #4f83c4;
+}
+
+.thumb--snm .thumb__panel::after {
+  background:
+    repeating-linear-gradient(90deg, #dfe8f2 0 8px, transparent 8px 11px),
+    repeating-linear-gradient(180deg, #dfe8f2 0 9px, transparent 9px 13px);
+}
+
 /* See 'n Say: the twelve-wedge dial. */
 .thumb--wheel {
   background: linear-gradient(165deg, #2f4d55, #1d3238);
