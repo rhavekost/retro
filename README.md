@@ -96,6 +96,16 @@ wrong. Knob turning is angle maths rather than drag maths — `rotationDelta`
 takes the short way round, so crossing twelve o'clock mid-turn doesn't send the
 line flying backwards. Both are pure and covered by `test/etch.test.js`.
 
+## Lite-Brite (`/lite-brite/`)
+
+Eight colours of peg on a black field, 28 × 22 holes with staggered rows.
+
+The picture is a flat `Uint8Array`, which makes sharing it a pure encoding
+problem: `codec.js` run-length encodes the board into the URL hash, so a link
+carries the whole drawing with no storage behind it. `test/lite-brite.test.js`
+holds the codec to a strict round-trip property, and to degrading gracefully on
+a mangled link rather than throwing.
+
 ## Running it
 
 ```bash
@@ -120,6 +130,7 @@ talkboy/                the cassette recorder
 speak-and-math/         the arithmetic console
 simon/                  the four-quadrant memory game
 etch-a-sketch/          the two-knob drawing toy
+lite-brite/             the glowing peg board
 shared/
   audio/                AudioContext, synthesis primitives, beeps
   display/              14-segment geometry + the N-cell display

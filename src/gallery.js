@@ -55,7 +55,7 @@ const buildPlaceholder = () => {
   const body = span('card__body');
   body.append(span('card__title', 'More on the way'));
   body.append(
-    span('card__text', 'Simon, Merlin, Lite-Brite, the Big Trak — the shelf is not full yet.')
+    span('card__text', 'Merlin, the Big Trak — the shelf is not full yet.')
   );
   item.append(thumb, body);
   return item;

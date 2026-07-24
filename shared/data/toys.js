@@ -71,4 +71,14 @@ export const TOYS = Object.freeze([
     thumb: 'etch',
     parts: ['thumb__etch-screen', 'thumb__etch-knob thumb__etch-knob--left', 'thumb__etch-knob thumb__etch-knob--right'],
   },
+  {
+    slug: 'lite-brite',
+    title: 'Lite-Brite',
+    year: '1967',
+    blurb:
+      'Eight colours of glowing peg on a black field. Your picture lives in the URL, so you can send it to someone.',
+    tech: 'Run-length codec · drag-to-paint · CSS bloom',
+    thumb: 'brite',
+    parts: ['thumb__brite-paper'],
+  },
 ]);
