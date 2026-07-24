@@ -1,0 +1,83 @@
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  padding: clamp(1.1rem, 4vw, 1.8rem) clamp(1rem, 3.5vw, 1.5rem) clamp(4.5rem, 14vw, 6rem);
+  border-radius: 1.4rem;
+  background: linear-gradient(158deg, var(--shell-hi), var(--shell) 42%, var(--shell-lo));
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.35),
+    inset 0 -8px 18px rgba(0, 0, 0, 0.28),
+    0 22px 42px rgba(0, 0, 0, 0.5);
+}
+
+.screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.35rem;
+  background: var(--screen-field);
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.45);
+  touch-action: none;
+}
+
+.frame__wordmark {
+  margin: 0.7rem 0 0;
+  text-align: center;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: #f7efe0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.knob {
+  position: absolute;
+  bottom: clamp(0.9rem, 3vw, 1.4rem);
+  width: clamp(52px, 14vw, 74px);
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+  background:
+    radial-gradient(circle at 38% 32%, #fff, var(--knob) 42%, var(--knob-lo));
+  box-shadow:
+    0 3px 0 #8a8578,
+    0 8px 16px rgba(0, 0, 0, 0.4),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.18);
+}
+
+/* The grip notch, so rotation is actually visible. */
+.knob::after {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  translate: -50% 0;
+  width: 10%;
+  height: 26%;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.knob--left { left: clamp(0.9rem, 3vw, 1.4rem); }
+.knob--right { right: clamp(0.9rem, 3vw, 1.4rem); }
+.knob--turning { cursor: grabbing; }
+
+@keyframes frame-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-6px, 3px) rotate(-1.1deg); }
+  40% { transform: translate(5px, -4px) rotate(0.9deg); }
+  60% { transform: translate(-4px, -2px) rotate(-0.7deg); }
+  80% { transform: translate(4px, 3px) rotate(0.6deg); }
+}
+
+.frame--shaking {
+  animation: frame-shake 0.42s ease-in-out 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame--shaking { animation: none; }
+}
