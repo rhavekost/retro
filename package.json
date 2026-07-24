@@ -1,0 +1,10 @@
+{
+  "name": "retro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser recreations of classic electronic toys",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}
