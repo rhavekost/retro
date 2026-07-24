@@ -936,7 +936,9 @@ In `see-n-say/index.html`, `speak-and-spell/index.html` and `talkboy/index.html`
 
 - [ ] **Step 3: Delete the duplicated rules**
 
-From each toy's `base.css`, remove the rule blocks now provided by the frame: `body`, `.stage`, `.title`, `.caption`, `.controls`, `.button`, `.levels*`, `.level`, `.hint`, `.notice`, `:focus-visible` and the reduced-motion block. Keep each toy's `:root` and anything toy-specific.
+From each toy's `base.css`, remove the rule blocks now provided by the frame: `.stage`, `.title`, `.caption`, `.controls`, `.button`, `.levels*`, `.level`, `.hint`, `.notice`, `:focus-visible` and the reduced-motion block. Keep each toy's `:root`.
+
+**Do not delete the `body` rule outright.** The frame supplies `body`'s font, colour, margin and flex layout, but each toy's `body` carries its own `background` — See 'n Say sits on teal, Talkboy on charcoal. Strip the properties the frame now provides and leave the toy's `background` (and any other toy-specific property) in place. Deleting the whole rule would change every page's backdrop, which Step 4 expects not to happen.
 
 > See 'n Say sets `--backdrop: #2a4a52` and its own `--font-display`; those live in its `:root` and still win because its stylesheet is linked after the frame.
 
