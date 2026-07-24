@@ -1,0 +1,148 @@
+:root {
+  /* Injection-moulded 1978 palette. */
+  --case-red: #d0342c;
+  --case-red-light: #e8574a;
+  --case-red-dark: #97211c;
+  --panel-blue: #4f83c4;
+  --panel-blue-dark: #35618f;
+  --key-blue: #7fb6dd;
+  --key-blue-dark: #4a86b0;
+  --key-red: #e05a4a;
+  --key-gold: #f0d060;
+  --ink-navy: #1e3a5f;
+  --ink: #2a2118;
+
+  --vfd-black: #0a0f0e;
+
+  --backdrop-2: #3a3c40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  color: #e8e4dc;
+  background:
+    radial-gradient(circle at 50% 18%, var(--backdrop-2), var(--backdrop) 65%),
+    var(--backdrop);
+}
+
+.stage {
+  /* Narrow enough that the console stays taller than it is wide. */
+  max-width: 470px;
+}
+
+/* ---------- Controls below the toy ---------- */
+
+.console-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.levels-label,
+.mute {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 220, 0.65);
+}
+
+.level {
+  font: inherit;
+  font-weight: 700;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.45rem;
+  border: 2px solid rgba(232, 228, 220, 0.25);
+  background: transparent;
+  color: rgba(232, 228, 220, 0.8);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.level:hover {
+  border-color: rgba(232, 228, 220, 0.6);
+}
+
+.level[aria-pressed='true'] {
+  background: var(--panel-yellow);
+  border-color: var(--panel-yellow);
+  color: var(--ink);
+}
+
+.mute {
+  font-family: inherit;
+  border: 2px solid rgba(232, 228, 220, 0.25);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+
+.mute:hover {
+  border-color: rgba(232, 228, 220, 0.6);
+}
+
+.notice {
+  color: var(--panel-yellow);
+}
+
+/* ---------- Instructions ---------- */
+
+.guide {
+  width: 100%;
+  max-width: 46ch;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(232, 228, 220, 0.7);
+}
+
+.guide summary {
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: rgba(232, 228, 220, 0.55);
+}
+
+.guide ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.guide li {
+  margin-bottom: 0.4rem;
+}
+
+.guide strong {
+  color: var(--panel-yellow);
+  font-weight: 700;
+}
+
+:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 0.6rem 0.5rem 2rem;
+  }
+
+  .stage {
+    gap: 0.9rem;
+  }
+
+  .console-controls {
+    gap: 0.8rem;
+  }
+}
