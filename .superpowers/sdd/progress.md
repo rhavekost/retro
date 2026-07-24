@@ -259,6 +259,19 @@ shared picture." Clear board: URL shortened to #.616 (single empty run),
 Gallery card verified (7 toys + placeholder, glowing-dots thumbnail
 renders).
 
+## Final whole-branch review (Opus, e6d101c..314684b)
+Ready to merge: yes, no fixes needed. Confirmed purely additive (zero diff
+to the six existing toys except the one intended gallery.js placeholder
+edit), both prior fixes (touch capture, cold-start throttle) present and
+correct, codec robustness independently re-verified (decode never throws,
+bounded by cursor < length — no DoS vector from a hostile hash). Repo-wide
+sanity: 60/60 tests, toys.js has exactly 7 distinct slugs, no duplicates.
+Repeated the drag.js-unconsumed observation for human awareness (possible
+follow-up dead-code cleanup, out of scope here).
+
+Ready to merge to main. This is the fourth and final toy — all four plans
+complete after this merge.
+
 ---
 
 # Etch A Sketch — progress ledger
