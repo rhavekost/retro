@@ -13,3 +13,13 @@ Task 1: complete (commits 9a014de..9108918, review clean)
     which the reviewer empirically verified FAILS on Node 22.23.1 (treats `test`
     as a literal file, MODULE_NOT_FOUND). Implementer's `test/*.test.js` is
     correct and necessary. Resolved by correcting the PLAN, not the code.
+Task 2: complete (commit 2ca6b47, re-review clean)
+  - Reviewer caught commit-scope creep: `git add -A` swept a CONCURRENT
+    SESSION's in-progress Talkboy gallery work (index.html, styles/gallery.css,
+    talkboy/styles/deck.css) into the commit. Controller split it; that work is
+    back in the working tree, uncommitted, untouched.
+  - Root cause removed: all 5 plans now stage explicit paths + carry a
+    "never git add -A" global constraint.
+  - NOTE FOR TASKS 7 & 8: they modify index.html, talkboy/index.html and the
+    toy base.css files — the same files the concurrent session is editing.
+    Surface the conflict before dispatching those.
