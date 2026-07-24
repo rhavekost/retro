@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simon</title>
+    <meta name="description" content="A browser tribute to the 1978 memory game." />
+    <link rel="stylesheet" href="../shared/styles/tokens.css" />
+    <link rel="stylesheet" href="../shared/styles/frame.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/unit.css" />
+    <link rel="stylesheet" href="../shared/styles/backlink.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%23111'/><path d='M8 1a7 7 0 0 0-7 7h7z' fill='%233d9c53'/><path d='M15 8a7 7 0 0 0-7-7v7z' fill='%23d8342c'/></svg>"
+    />
+  </head>
+  <body>
+    <a class="backlink" href="../">
+      <span class="backlink__arrow" aria-hidden="true">←</span> All toys
+    </a>
+
+    <main class="stage">
+      <h1 class="title">Simon</h1>
+
+      <div id="unit" class="unit"></div>
+
+      <p id="readout" class="caption" role="status" aria-live="polite">Press start.</p>
+
+      <div class="controls">
+        <button id="start" type="button" class="button">Start</button>
+        <div class="levels-wrap">
+          <span class="levels-label">Level</span>
+          <div id="levels" class="levels" role="group" aria-label="Skill level"></div>
+        </div>
+      </div>
+
+      <p class="hint">
+        Watch the sequence, then repeat it. Each round adds one more signal.
+        Click the quadrants or tab to them and press Enter.
+      </p>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
