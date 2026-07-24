@@ -13,7 +13,7 @@ export const FUNCTION_KEYS = Object.freeze([
   { code: 'LETTER', label: '?', caption: 'LETTER', tone: 'red' },
   { code: 'SAYIT', label: '☺', caption: 'SAY\nIT', tone: 'red' },
   { code: 'SPELL', label: '▤', caption: 'SPELL', tone: 'red' },
-  { code: 'ON', label: 'ON', tone: 'blue' },
+  { code: 'ON', label: 'ON', tone: 'blue', alwaysOn: true },
 ]);
 
 const LETTER_ROWS = Object.freeze([

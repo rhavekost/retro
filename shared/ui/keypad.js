@@ -32,6 +32,7 @@ const makeKey = ({ code, label, caption, tone }, onPress) => {
  */
 export const createKeypad = (mount, { rows, onPress }) => {
   const keysByCode = new Map();
+  const alwaysOnCodes = new Set();
 
   rows.forEach((row) => {
     const element = document.createElement('div');
@@ -40,6 +41,7 @@ export const createKeypad = (mount, { rows, onPress }) => {
       const key = makeKey(spec, onPress);
       element.append(key);
       keysByCode.set(spec.code, key);
+      if (spec.alwaysOn) alwaysOnCodes.add(spec.code);
     });
     mount.append(element);
   });
@@ -51,11 +53,12 @@ export const createKeypad = (mount, { rows, onPress }) => {
     setTimeout(() => key.classList.remove('key--pressed'), 130);
   };
 
-  // 'ON' stays live even when the rest of the board is disabled, otherwise
-  // there is no way to wake the toy up.
+  // Keys flagged `alwaysOn` in their layout spec stay live even when the rest
+  // of the board is disabled — e.g. the power key, otherwise there would be
+  // no way to wake the toy up.
   const setDisabled = (disabled) => {
     keysByCode.forEach((key, code) => {
-      key.disabled = disabled && code !== 'ON';
+      key.disabled = disabled && !alwaysOnCodes.has(code);
     });
   };
 

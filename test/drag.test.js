@@ -14,8 +14,8 @@ test('clampOffset reports the travelled distance in range', () => {
   assert.equal(clampOffset(100, 160, { max: 130 }), 60);
 });
 
-test('a release past the trigger fires', () => {
-  assert.equal(classifyRelease(90, { trigger: 55, slop: 8 }), 'fire');
+test('the trigger boundary itself fires', () => {
+  assert.equal(classifyRelease(55, { trigger: 55, slop: 8 }), 'fire');
 });
 
 test('a release that never moved is a tap', () => {
@@ -26,6 +26,10 @@ test('a short drag below the trigger is cancelled, not treated as a tap', () => 
   assert.equal(classifyRelease(30, { trigger: 55, slop: 8 }), 'cancel');
 });
 
-test('the slop boundary counts as a tap', () => {
+test('just under the slop boundary still counts as a tap', () => {
   assert.equal(classifyRelease(7, { trigger: 55, slop: 8 }), 'tap');
+});
+
+test('the slop boundary itself is a cancel, not a tap', () => {
+  assert.equal(classifyRelease(8, { trigger: 55, slop: 8 }), 'cancel');
 });
