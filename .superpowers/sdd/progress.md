@@ -30,3 +30,11 @@ Task 3: complete (commit 10572d3, review clean)
     main.js on plain reload. A fresh dynamic import executes correctly.
     Verify with import('./src/main.js?p='+Date.now()), not reload.
 Task 4: complete (commit 0d3053e, review clean)
+Task 5: complete (commit 4cb960b, review clean — Approved)
+  - OPEN, needs human decision (Important, plan-mandated):
+    shared/ui/keypad.js setDisabled() hardcodes `code !== 'ON'`. My brief
+    mandated it verbatim, but it contradicts the task's own goal of a
+    toy-agnostic component. Speak & Math's planned layout happens to use
+    'ON' too, so it works today; still latent. Fix belongs in the interface
+    (alwaysEnabled predicate or an `alwaysOn` field on the key spec).
+  - Minor: layout.js exports FUNCTION_KEYS which nothing outside consumes.
