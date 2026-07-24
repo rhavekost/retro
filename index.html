@@ -26,77 +26,7 @@
         </p>
       </header>
 
-      <ul class="shelf">
-        <li class="card">
-          <a class="card__link" href="speak-and-spell/">
-            <span class="thumb thumb--sns" aria-hidden="true">
-              <span class="thumb__handle"></span>
-              <span class="thumb__screen"></span>
-              <span class="thumb__panel"></span>
-            </span>
-            <span class="card__body">
-              <span class="card__year">1978</span>
-              <span class="card__title">Speak &amp; Spell</span>
-              <span class="card__text">
-                Ten words, two tries each, and it recites the correct spelling
-                letter by letter when you miss. Plus Mystery Word, Letter and
-                Secret Code.
-              </span>
-              <span class="card__tech">SVG 14-segment VFD · speech synthesis · 4 difficulty levels</span>
-            </span>
-          </a>
-        </li>
-
-        <li class="card">
-          <a class="card__link" href="see-n-say/">
-            <span class="thumb thumb--wheel" aria-hidden="true">
-              <span class="thumb__dial"></span>
-              <span class="thumb__pointer"></span>
-              <span class="thumb__hub"></span>
-            </span>
-            <span class="card__body">
-              <span class="card__year">1965</span>
-              <span class="card__title">See 'n Say</span>
-              <span class="card__text">
-                Aim the arrow, pull the cord, and the farmer tells you what the
-                cow says. Twelve animals on a spring-loaded dial.
-              </span>
-              <span class="card__tech">Web Audio synthesis · zero audio files · drag-to-pull cord</span>
-            </span>
-          </a>
-        </li>
-
-        <li class="card">
-          <a class="card__link" href="talkboy/">
-            <span class="thumb thumb--tape" aria-hidden="true">
-              <span class="thumb__keys"></span>
-              <span class="thumb__slots"></span>
-              <span class="thumb__porthole">
-                <span class="thumb__reel"></span>
-              </span>
-            </span>
-            <span class="card__body">
-              <span class="card__year">1992</span>
-              <span class="card__title">Talkboy</span>
-              <span class="card__text">
-                Record thirty seconds onto the tape, then flick the switch and
-                play yourself back at half speed. The reels really spool.
-              </span>
-              <span class="card__tech">Live mic recording · tape-speed pitch shift · synthesized deck noise</span>
-            </span>
-          </a>
-        </li>
-
-        <li class="card card--empty">
-          <span class="thumb thumb--empty" aria-hidden="true">?</span>
-          <span class="card__body">
-            <span class="card__title">More on the way</span>
-            <span class="card__text">
-              Simon, Merlin, Lite-Brite, the Big Trak — the shelf is not full yet.
-            </span>
-          </span>
-        </li>
-      </ul>
+      <ul id="shelf" class="shelf"></ul>
 
       <footer class="footer">
         <p>
@@ -108,5 +38,6 @@
         </p>
       </footer>
     </main>
+    <script type="module" src="src/gallery.js"></script>
   </body>
 </html>
