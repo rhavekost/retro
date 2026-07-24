@@ -249,6 +249,20 @@ had loaded this toy's canvas; a fresh tab resolved it immediately. Recorded
 in case it recurs — not an app bug (page state was confirmed fine via
 read_page/JS while screenshot was stuck).
 
+## Final whole-branch review (Opus, c428d4d..73c7857)
+Ready to merge: yes, no fixes needed — the first of the four toys this
+session to get a clean final review with zero task-level controller fixes.
+Confirmed purely additive (zero diff to the five existing toys), the
+gallery's multi-class part strings (`thumb__etch-knob thumb__etch-knob--left`
+etc.) are handled correctly by buildPart, the two frame.css files (shared +
+toy-local) share no selectors, both hard mechanics independently re-verified
+correct. Repeated the two pre-known cosmetic minors (comment/frame-count,
+non-defensive `from` reference) and one new observation (arrow-key Up/Down
+semantics on the right knob model rotation direction, not screen direction —
+a defensible reading, not a defect) — none blocking.
+
+Ready to merge to main.
+
 ---
 
 # Simon — progress ledger
