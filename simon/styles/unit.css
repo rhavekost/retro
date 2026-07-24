@@ -1,0 +1,55 @@
+.unit {
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 14px;
+  background: linear-gradient(160deg, var(--shell-hi), var(--shell));
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.22),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.simon {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.quadrant {
+  transition: fill 0.06s linear, filter 0.06s linear;
+  stroke: #0d0e10;
+  stroke-width: 4;
+}
+
+.quadrant--green { fill: var(--simon-green); }
+.quadrant--red { fill: var(--simon-red); }
+.quadrant--yellow { fill: var(--simon-yellow); }
+.quadrant--blue { fill: var(--simon-blue); }
+
+.quadrant--lit.quadrant--green { fill: var(--simon-green-lit); }
+.quadrant--lit.quadrant--red { fill: var(--simon-red-lit); }
+.quadrant--lit.quadrant--yellow { fill: var(--simon-yellow-lit); }
+.quadrant--lit.quadrant--blue { fill: var(--simon-blue-lit); }
+
+.quadrant--lit {
+  filter: brightness(1.25) drop-shadow(0 0 12px currentColor);
+}
+
+/* Only offer the pointer when the unit is actually taking input. */
+.simon--live .quadrant {
+  cursor: pointer;
+}
+
+.simon--live .quadrant:hover {
+  filter: brightness(1.1);
+}
+
+.simon__hub {
+  fill: #1d1f22;
+  stroke: #0d0e10;
+  stroke-width: 5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quadrant { transition: none; }
+}

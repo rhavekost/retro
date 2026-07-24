@@ -1,0 +1,19 @@
+:root {
+  --simon-green: #3ea64f;
+  --simon-green-lit: #7bf58f;
+  --simon-red: #cf3730;
+  --simon-red-lit: #ff7a6e;
+  --simon-yellow: #e8c22e;
+  --simon-yellow-lit: #ffee7a;
+  --simon-blue: #2f6dbc;
+  --simon-blue-lit: #78b6ff;
+  --shell: #17181b;
+  --shell-hi: #34373c;
+}
+
+body {
+  font-family: var(--font-display);
+  background:
+    radial-gradient(circle at 50% 16%, var(--backdrop-2), var(--backdrop) 62%),
+    var(--backdrop);
+}
