@@ -86,6 +86,16 @@ without a browser. The four tone frequencies are the ones the original used;
 they are mutually consonant, which is why an arbitrary sequence still sounds
 like music.
 
+## Etch A Sketch (`/etch-a-sketch/`)
+
+Two knobs, one continuous line, shake to erase.
+
+The unbroken-line rule is structural, not enforced: `stylus.js` returns the
+segment it just travelled on every move, so there is no pen-up state to get
+wrong. Knob turning is angle maths rather than drag maths — `rotationDelta`
+takes the short way round, so crossing twelve o'clock mid-turn doesn't send the
+line flying backwards. Both are pure and covered by `test/etch.test.js`.
+
 ## Running it
 
 ```bash
@@ -109,6 +119,7 @@ see-n-say/              the pull-cord wheel
 talkboy/                the cassette recorder
 speak-and-math/         the arithmetic console
 simon/                  the four-quadrant memory game
+etch-a-sketch/          the two-knob drawing toy
 shared/
   audio/                AudioContext, synthesis primitives, beeps
   display/              14-segment geometry + the N-cell display

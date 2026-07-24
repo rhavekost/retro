@@ -412,6 +412,58 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
+/* Etch A Sketch: red slab, grey screen, two knobs. */
+.thumb--etch {
+  background: linear-gradient(165deg, #2a2b2f, #17181b);
+  display: grid;
+  place-items: center;
+}
+
+.thumb--etch::before {
+  content: '';
+  position: absolute;
+  width: 148px;
+  height: 122px;
+  border-radius: 10px;
+  background: linear-gradient(158deg, #e05a4a, #c0392b 42%, #8e2820);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+}
+
+.thumb__etch-screen {
+  position: absolute;
+  z-index: 1;
+  width: 122px;
+  height: 74px;
+  border-radius: 3px;
+  transform: translateY(-14px);
+  background: #c8c9c3;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* A scribble, so the thumbnail reads as a drawing toy. */
+.thumb__etch-screen::after {
+  content: '';
+  position: absolute;
+  inset: 12px 14px;
+  background:
+    linear-gradient(90deg, transparent 0 8px, #4b4f52 8px 10px, transparent 10px 100%),
+    linear-gradient(180deg, transparent 0 18px, #4b4f52 18px 20px, transparent 20px 100%);
+}
+
+.thumb__etch-knob {
+  position: absolute;
+  z-index: 1;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  transform: translateY(44px);
+  background: radial-gradient(circle at 38% 32%, #fff, #f0ece3 42%, #b8b3a6);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+}
+
+.thumb__etch-knob--left { margin-right: 108px; }
+.thumb__etch-knob--right { margin-left: 108px; }
+
 .thumb--empty {
   display: grid;
   place-items: center;

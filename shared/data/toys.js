@@ -61,4 +61,14 @@ export const TOYS = Object.freeze([
     thumb: 'simon',
     parts: ['thumb__disc', 'thumb__hub'],
   },
+  {
+    slug: 'etch-a-sketch',
+    title: 'Etch A Sketch',
+    year: '1960',
+    blurb:
+      'Two knobs, one line, and no way to lift the pen. Shake the whole thing to start over.',
+    tech: 'Canvas · knob rotation maths · powder-settle erase',
+    thumb: 'etch',
+    parts: ['thumb__etch-screen', 'thumb__etch-knob thumb__etch-knob--left', 'thumb__etch-knob thumb__etch-knob--right'],
+  },
 ]);
