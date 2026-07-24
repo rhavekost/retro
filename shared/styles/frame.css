@@ -31,8 +31,7 @@ body {
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
 }
 
-.caption,
-.status {
+.caption {
   margin: 0;
   min-height: 2.4rem;
   display: grid;
@@ -76,50 +75,18 @@ body {
 
 .button:disabled { opacity: 0.55; cursor: not-allowed; }
 
-.button--quiet {
-  background: transparent;
-  color: rgba(236, 232, 224, 0.8);
-  border: 2px solid rgba(236, 232, 224, 0.25);
-  box-shadow: none;
-}
-
-.button--quiet:hover:not(:disabled) { border-color: rgba(236, 232, 224, 0.6); }
-
 .levels-wrap {
+  /* The level chips themselves (.levels, .levels-label, .level*) stay with
+     the toy that owns them — currently only Speak & Spell uses this
+     picker, and its stylesheet defines those rules. Only this layout
+     wrapper is shared; hoist the chip rules here if a second toy needs
+     them, matching what's already rendering. */
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
 .levels { display: flex; gap: 0.35rem; }
-
-.levels-label {
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(236, 232, 224, 0.65);
-}
-
-.level {
-  font: inherit;
-  font-weight: 700;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 0.45rem;
-  border: 2px solid rgba(236, 232, 224, 0.25);
-  background: transparent;
-  color: rgba(236, 232, 224, 0.8);
-  cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-
-.level:hover { border-color: rgba(236, 232, 224, 0.6); }
-
-.level[aria-pressed='true'] {
-  background: var(--toy-yellow);
-  border-color: var(--toy-yellow);
-  color: #2a2118;
-}
 
 .hint,
 .notice {

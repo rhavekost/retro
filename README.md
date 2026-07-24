@@ -90,7 +90,8 @@ shared/
   display/              14-segment geometry + the N-cell display
   ui/                   keypad (layout-driven), drag handle
   data/toys.js          the gallery manifest
-  styles/               design tokens + the "all toys" pill
+  styles/               design tokens, the shared page frame (frame.css,
+                         the largest of the three), + the "all toys" pill
 ```
 
 ## Adding another toy
@@ -100,9 +101,15 @@ shared/
    your toy's stylesheets, and `../shared/styles/backlink.css` last. Paste in
    the back-link anchor.
 3. Import what you need from `../shared/` — don't fork it.
-4. Add an entry to `shared/data/toys.js` and a `.thumb--<name>` rule in
-   `styles/gallery.css`.
-5. Put pure logic in modules that never touch `window` or `document`, and add
+4. Give your `body` its own `background`. The shared frame sets a near-white
+   `color` but no background, so a toy that forgets one renders white-on-white
+   and looks blank.
+5. Add an entry to `shared/data/toys.js` **and** a matching `.thumb--<name>`
+   rule in `styles/gallery.css` — the two must stay in lockstep. Nothing
+   detects a mismatch: a stale `parts` entry with no matching rule renders as
+   a plain rectangle, and a rule with no matching part renders as an invisible
+   empty span.
+6. Put pure logic in modules that never touch `window` or `document`, and add
    a spec under `test/`. Run `npm test`.
 
 Keep every path relative — GitHub Pages serves this project from a subpath, so
@@ -113,6 +120,5 @@ absolute paths starting with `/` will break.
 - Audio starts on the first keypress — browsers block it before a user gesture.
 - Segment shapes for `B`, `V` and `X` are the usual 14-segment compromises;
   some letters simply cannot be drawn exactly with fourteen bars.
-- Both toys degrade gracefully: without Web Audio or speech synthesis they
-  still play, silently, with a notice explaining what is missing.
-```
+- All three toys degrade gracefully: without Web Audio or speech synthesis
+  they still play, silently, with a notice explaining what is missing.

@@ -7,6 +7,10 @@
   --ring-orange: #e8622a;
   --ring-orange-dark: #b8471a;
 
+  /* Cream ABS shading, used only by this toy's case gradient. */
+  --plastic-shade: #ded2b6;
+  --plastic-deep: #c4b795;
+
   --font-display: 'Trebuchet MS', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
 }
 

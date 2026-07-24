@@ -62,5 +62,7 @@ const buildPlaceholder = () => {
 };
 
 const shelf = document.querySelector('#shelf');
-TOYS.forEach((toy) => shelf.append(buildCard(toy)));
-shelf.append(buildPlaceholder());
+if (shelf) {
+  TOYS.forEach((toy) => shelf.append(buildCard(toy)));
+  shelf.append(buildPlaceholder());
+}
