@@ -38,14 +38,39 @@ twelve is an oscillator recipe in `see-n-say/src/audio/voices.js`: the cow is a
 sawtooth gliding 150→92 Hz under a lowpass, the bee is a 42 Hz tremolo on a
 bandpassed saw, the lion is filtered brown noise over a detuned growl.
 
+## Talkboy (`/talkboy/`)
+
+The 1992 Tiger Electronics handheld from *Home Alone 2*. Press `REC`, talk, then
+flick the speed switch to **Slow** and hit `PLAY`.
+
+- **A real tape.** One 30-second mono buffer that recordings are written into
+  *in place*. Recording over the middle of something wipes only that part, and
+  the head position survives stop, rewind and fast-forward.
+- **Slow playback is not a pitch shifter.** It is an `AudioBufferSourceNode`
+  running at 0.62×, so speed and pitch drop together exactly the way tape does.
+  `Fast` runs at 1.55×.
+- **The mechanism is synthesized too** — piano-key thunks, the spool motor
+  during shuttle, and tape hiss that rides under playback and brightens with
+  speed.
+- The reels spool at the right relative rates: the take-up reel is fat and slow
+  while the supply reel gets thin and frantic, because angular speed is linear
+  speed over pack radius.
+- Live VU meter, three-digit tape counter, and a brown strip on the cassette
+  label showing where on the tape your recordings actually sit.
+
+Recording needs microphone permission. Nothing is uploaded — the audio never
+leaves the page, and the tape is gone when you close the tab.
+
 ## Running it
 
 ```bash
-python3 -m http.server 8137
+python3 -m http.server 8138
 ```
 
-Then open <http://localhost:8137>. Any static server works; ES modules need
-HTTP, so opening `index.html` from the filesystem will not work.
+Then open <http://localhost:8138>. Any static server works; ES modules need
+HTTP, so opening `index.html` from the filesystem will not work. The Talkboy
+also needs a secure context for the microphone — `localhost` counts, as does
+the GitHub Pages URL.
 
 ## Layout
 
@@ -59,15 +84,21 @@ speak-and-spell/
   src/ui/keypad.js      membrane keypad + physical-keyboard mapping
   src/data/words.js     spelling lists, levels A–D
 see-n-say/              the pull-cord wheel, self-contained
-shared/audio/           AudioContext + synthesis primitives, used by both toys
+talkboy/
+  src/tape/             tape.js (the medium), recorder.js (mic), transport.js
+  src/audio/mechanics.js  key thunks, spool motor, tape hiss
+  src/ui/               reels.js (SVG cassette), readout.js (counter + meter)
+shared/audio/           AudioContext + synthesis primitives, used by every toy
+shared/styles/          the "all toys" pill every toy page carries
 ```
 
 ## Adding another toy
 
 Create a directory, drop an `index.html` in it, import anything you need from
-`../shared/audio/`, and add a card to the root `index.html`. Keep every path
-relative — GitHub Pages serves this project from a subpath, so absolute paths
-starting with `/` will break.
+`../shared/audio/`, and add a card to the root `index.html`. Link
+`../shared/styles/backlink.css` **last** and paste in the back-link anchor so
+the toy has a way home. Keep every path relative — GitHub Pages serves this
+project from a subpath, so absolute paths starting with `/` will break.
 
 ## Notes
 

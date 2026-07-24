@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Talkboy — record, then play it back slow</title>
+    <meta
+      name="description"
+      content="A browser recreation of the 1992 Tiger Electronics Talkboy: record your voice on a 30-second tape and play it back at slow or fast speed."
+    />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/deck.css" />
+    <link rel="stylesheet" href="../shared/styles/backlink.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%238d9298'/><rect x='2' y='5' width='12' height='6' rx='1' fill='%23191c1f'/><circle cx='5.5' cy='8' r='1.6' fill='%238d9298'/><circle cx='10.5' cy='8' r='1.6' fill='%238d9298'/></svg>"
+    />
+  </head>
+  <body>
+    <a class="backlink" href="../">
+      <span class="backlink__arrow" aria-hidden="true">←</span> All toys
+    </a>
+
+    <main class="stage">
+      <h1 class="title">Talkboy</h1>
+
+      <div class="deck">
+        <!-- The flip-out microphone paddle, hinged on the left edge. -->
+        <div id="boom" class="mic" aria-hidden="true">
+          <span class="mic__panel"></span>
+          <span class="mic__capsule"><span class="mic__holes"></span></span>
+        </div>
+
+        <!-- Transport keys stand proud of the top edge, as on the real deck. -->
+        <div class="keys">
+          <button id="key-rew" type="button" class="key" data-key="rew">
+            <span class="key__glyph" aria-hidden="true">◀◀</span>
+            <span class="key__name">Rew</span>
+          </button>
+          <button id="key-play" type="button" class="key" data-key="play">
+            <span class="key__glyph" aria-hidden="true">▶</span>
+            <span class="key__name">Play</span>
+          </button>
+          <button id="key-ff" type="button" class="key" data-key="ff">
+            <span class="key__glyph" aria-hidden="true">▶▶</span>
+            <span class="key__name">F.Fwd</span>
+          </button>
+          <button id="key-stop" type="button" class="key" data-key="stop">
+            <span class="key__glyph" aria-hidden="true">■</span>
+            <span class="key__name">Stop</span>
+          </button>
+          <button id="key-rec" type="button" class="key key--rec" data-key="rec">
+            <span class="key__glyph" aria-hidden="true">●</span>
+            <span class="key__name">Rec</span>
+          </button>
+          <span class="wheel" aria-hidden="true"></span>
+        </div>
+
+        <div class="deck__body">
+          <!-- Recessed instrument strip along the top of the face. -->
+          <div class="strip">
+            <div id="counter" class="counter"></div>
+            <span id="rec-lamp" class="lamp">
+              <span class="lamp__bulb"></span>
+              <span class="lamp__text">REC</span>
+            </span>
+            <span id="waveform" class="waveform" aria-hidden="true"></span>
+            <div id="meter" class="meter"></div>
+          </div>
+
+          <div class="face">
+            <p class="wordmark" aria-hidden="true">
+              <span class="wordmark__deluxe">Deluxe</span>
+              <span class="wordmark__name">Talkboy</span>
+              <span class="wordmark__tm">™</span>
+            </p>
+
+            <svg class="swoosh" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 0 96 C 96 96 150 74 186 22 C 200 4 224 -6 260 -6 L 300 -6" />
+            </svg>
+
+            <div class="porthole">
+              <div id="reels" class="porthole__glass"></div>
+              <span class="porthole__dome" aria-hidden="true"></span>
+            </div>
+
+            <div class="grille" aria-hidden="true">
+              <span class="grille__slot"></span>
+              <span class="grille__slot"></span>
+              <span class="grille__slot"></span>
+            </div>
+          </div>
+
+          <div class="lower">
+            <div class="speed" role="radiogroup" aria-label="Tape speed">
+              <span class="speed__label" aria-hidden="true">Speed</span>
+              <div class="speed__track">
+                <button type="button" class="speed__option" role="radio" data-speed="slow" aria-checked="false">
+                  Slow
+                </button>
+                <button type="button" class="speed__option" role="radio" data-speed="normal" aria-checked="true">
+                  Norm
+                </button>
+                <button type="button" class="speed__option" role="radio" data-speed="fast" aria-checked="false">
+                  Fast
+                </button>
+                <span id="speed-knob" class="speed__knob" aria-hidden="true"></span>
+              </div>
+            </div>
+            <span class="grip" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+
+      <p id="caption" class="caption" role="status" aria-live="polite"></p>
+
+      <div class="controls">
+        <button id="rewind-all" type="button" class="button">⏮ Back to start</button>
+        <button id="erase" type="button" class="button button--ghost">Erase tape</button>
+      </div>
+
+      <p id="notice" class="notice" hidden></p>
+
+      <p class="hint">
+        Press <strong>Rec</strong> and talk — the tape runs 30 seconds. Then flick
+        the speed switch to <strong>Slow</strong> and hit <strong>Play</strong>.
+        Keyboard: <kbd>R</kbd> record, <kbd>Space</kbd> play/stop,
+        <kbd>←</kbd>/<kbd>→</kbd> shuttle.
+      </p>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

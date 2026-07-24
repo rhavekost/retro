@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "retro-see-n-say",
+      "name": "retro",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8137"],
-      "port": 8137
+      "runtimeArgs": ["-m", "http.server", "8138"],
+      "port": 8138
     }
   ]
 }

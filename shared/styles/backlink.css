@@ -3,6 +3,12 @@
  * top-left corner and is deliberately neutral so it reads on any toy's
  * backdrop, from the See 'n Say teal to the Talkboy charcoal.
  */
+/* Headroom for the pill. This sheet is linked last on every toy page so the
+   override lands after each toy's own body padding. */
+body {
+  padding-top: max(3.4rem, calc(env(safe-area-inset-top) + 3.2rem));
+}
+
 .backlink {
   position: fixed;
   top: max(0.75rem, env(safe-area-inset-top));
