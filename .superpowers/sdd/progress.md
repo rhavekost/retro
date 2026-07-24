@@ -38,3 +38,24 @@ Task 5: complete (commit 4cb960b, review clean — Approved)
     'ON' too, so it works today; still latent. Fix belongs in the interface
     (alwaysEnabled predicate or an `alwaysOn` field on the key spec).
   - Minor: layout.js exports FUNCTION_KEYS which nothing outside consumes.
+Task 6: complete (commit e0c4f96, review clean — Approved)
+  - Implementer subagent was killed mid-task by a session limit after writing
+    code+tests but before verifying/committing. Controller finished it.
+  - TDD evidence incomplete: RED was never captured. drag.js did not exist at
+    237218f so the failure was mechanically certain, but nobody observed it.
+  - OPEN, needs human decision (Important, plan-mandated):
+    test/drag.test.js boundary tests miss the actual boundaries — 'the slop
+    boundary counts as a tap' asserts offset 7, not slop (8); 'a release past
+    the trigger fires' asserts 90, not trigger (55). Code is correct at both
+    edges; nothing would catch a future `<` -> `<=` slip.
+  - Minor: createDragHandle has no consumer or coverage until Etch A Sketch;
+    setLocked(true) mid-drag does not abort an in-flight drag (undefined by
+    the brief — decide when the first consumer lands).
+
+## BLOCKED: Tasks 7 & 8 vs the concurrent session
+Tasks 7 (tokens) and 8 (frame) must edit index.html, talkboy/index.html and the
+toy base.css files. The concurrent session currently has these dirty and
+uncommitted: README.md, index.html, styles/gallery.css, talkboy/index.html,
+talkboy/src/main.js, talkboy/styles/base.css, talkboy/styles/deck.css.
+Direct overlap on index.html, talkboy/index.html, talkboy/styles/base.css.
+Editing them now risks clobbering that work. Needs the human to land or park it.
