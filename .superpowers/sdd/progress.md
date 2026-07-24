@@ -29,3 +29,4 @@ Task 3: complete (commit 10572d3, review clean)
   - Browser verification note: the dev server's module cache serves STALE
     main.js on plain reload. A fresh dynamic import executes correctly.
     Verify with import('./src/main.js?p='+Date.now()), not reload.
+Task 4: complete (commit 0d3053e, review clean)
