@@ -132,6 +132,12 @@
   transition-timing-function: cubic-bezier(0.16, 0.72, 0.16, 1);
 }
 
+/* The pull kick is snappy, not a long glide. */
+.wheel--nudging .pointer {
+  transition-duration: 0.16s;
+  transition-timing-function: ease-out;
+}
+
 .pointer__arrow {
   fill: var(--toy-red);
   stroke: #8f1f1a;

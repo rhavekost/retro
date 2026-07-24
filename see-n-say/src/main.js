@@ -54,6 +54,7 @@ async function playTurn(index) {
 
   const animal = ANIMALS[index];
   try {
+    wheel.nudge();
     await playRatchet();
     setCaption(`The ${animal.label} says…`);
     await speak(`The ${animal.label} says`);

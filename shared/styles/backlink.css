@@ -1,0 +1,56 @@
+/**
+ * The "back to the shelf" pill that every toy page carries. It floats over the
+ * top-left corner and is deliberately neutral so it reads on any toy's
+ * backdrop, from the See 'n Say teal to the Talkboy charcoal.
+ */
+.backlink {
+  position: fixed;
+  top: max(0.75rem, env(safe-area-inset-top));
+  left: max(0.75rem, env(safe-area-inset-left));
+  z-index: 20;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  padding: 0.42rem 0.9rem 0.42rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(12, 14, 16, 0.55);
+  backdrop-filter: blur(6px);
+
+  color: rgba(255, 255, 255, 0.86);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.backlink:hover,
+.backlink:focus-visible {
+  background: rgba(12, 14, 16, 0.78);
+  color: #fff;
+}
+
+.backlink__arrow {
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.15s ease;
+}
+
+.backlink:hover .backlink__arrow {
+  transform: translateX(-2px);
+}
+
+/* On narrow screens the pill shrinks to the arrow plus a short label so it
+   never crowds the toy itself. */
+@media (max-width: 480px) {
+  .backlink {
+    padding: 0.35rem 0.7rem 0.35rem 0.55rem;
+    font-size: 0.72rem;
+  }
+}

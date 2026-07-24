@@ -141,7 +141,21 @@ export const createWheel = (mount, onSelect) => {
 
   const focusWedge = (index) => wedgeNodes[index]?.focus();
 
+  /**
+   * A short kick of the arrow, as the mechanism catches on a pull. The dial
+   * does not re-aim itself — you point it, then pull, like the real toy — but
+   * without this the pull has no visible effect at all.
+   */
+  const nudge = () => {
+    svg.classList.add('wheel--nudging');
+    pointer.style.transform = `rotate(${currentAngle - 5}deg)`;
+    setTimeout(() => {
+      pointer.style.transform = `rotate(${currentAngle}deg)`;
+      setTimeout(() => svg.classList.remove('wheel--nudging'), 340);
+    }, 160);
+  };
+
   const setSpinning = (spinning) => svg.classList.toggle('wheel--spinning', spinning);
 
-  return { pointAt, focusWedge, setSpinning, element: svg };
+  return { pointAt, focusWedge, setSpinning, nudge, element: svg };
 };

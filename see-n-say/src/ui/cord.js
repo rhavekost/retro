@@ -4,6 +4,8 @@
  */
 const MAX_PULL = 130;
 const TRIGGER_AT = 55;
+/** Movement below this counts as a tap rather than a short drag. */
+const TAP_SLOP = 8;
 
 export const createCord = (root, onPull) => {
   const ring = root.querySelector('.cord__ring');
@@ -40,11 +42,30 @@ export const createCord = (root, onPull) => {
     render();
   };
 
+  /** Plays the full pull animation, then fires. Used by taps and the keyboard. */
+  const animatedPull = () => {
+    if (locked) return;
+    offset = MAX_PULL * 0.8;
+    render();
+    setTimeout(() => settle(true), 180);
+  };
+
   const end = () => {
     if (!dragging) return;
     dragging = false;
     root.classList.remove('cord--dragging');
-    settle(offset >= TRIGGER_AT);
+
+    if (offset >= TRIGGER_AT) {
+      settle(true);
+      return;
+    }
+    // A tap is a pull too — plenty of people click the ring instead of
+    // dragging it, and silently doing nothing reads as broken.
+    if (offset < TAP_SLOP) {
+      animatedPull();
+      return;
+    }
+    settle(false);
   };
 
   ring.addEventListener('pointerdown', (event) => {
@@ -56,14 +77,10 @@ export const createCord = (root, onPull) => {
   ring.addEventListener('pointerup', end);
   ring.addEventListener('pointercancel', end);
 
-  // Keyboard / click fallback: animate a full pull automatically.
   ring.addEventListener('keydown', (event) => {
     if (event.key !== 'Enter' && event.key !== ' ') return;
     event.preventDefault();
-    if (locked) return;
-    offset = MAX_PULL * 0.8;
-    render();
-    setTimeout(() => settle(true), 180);
+    animatedPull();
   });
 
   /** Plays the pull animation without user input — used by "Surprise me". */
