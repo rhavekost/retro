@@ -4,10 +4,10 @@
  * Anything longer than eight characters scrolls right-to-left, exactly like
  * the original does with "THAT IS CORRECT".
  */
-import { CELL_WIDTH, CELL_HEIGHT, SEGMENT_SHAPES, SEGMENT_ORDER, segmentsFor } from '../../../shared/display/segments.js';
+import { CELL_WIDTH, CELL_HEIGHT, SEGMENT_SHAPES, SEGMENT_ORDER, segmentsFor } from './segments.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
-export const CELL_COUNT = 8;
+export const DEFAULT_CELLS = 8;
 
 const CELL_GAP = 22;
 const SCROLL_MS = 260;
@@ -28,18 +28,18 @@ const buildCell = (index) => {
   return { group, segments };
 };
 
-export const createDisplay = (mount) => {
-  const width = CELL_COUNT * CELL_WIDTH + (CELL_COUNT - 1) * CELL_GAP;
+export const createDisplay = (mount, { cells = DEFAULT_CELLS } = {}) => {
+  const width = cells * CELL_WIDTH + (cells - 1) * CELL_GAP;
   const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox', `-8 -8 ${width + 16} ${CELL_HEIGHT + 16}`);
   svg.setAttribute('class', 'vfd__grid');
   svg.setAttribute('role', 'img');
 
-  const cells = [];
-  for (let i = 0; i < CELL_COUNT; i += 1) {
+  const cellElements = [];
+  for (let i = 0; i < cells; i += 1) {
     const cell = buildCell(i);
     svg.append(cell.group);
-    cells.push(cell);
+    cellElements.push(cell);
   }
   mount.append(svg);
 
@@ -50,8 +50,8 @@ export const createDisplay = (mount) => {
   let pendingScroll = null;
 
   const paint = (text) => {
-    const padded = text.padEnd(CELL_COUNT, ' ').slice(0, CELL_COUNT);
-    cells.forEach((cell, index) => {
+    const padded = text.padEnd(cells, ' ').slice(0, cells);
+    cellElements.forEach((cell, index) => {
       const lit = new Set(segmentsFor(padded[index]));
       SEGMENT_ORDER.forEach((name) => {
         cell.segments[name].classList.toggle('seg--on', lit.has(name));
@@ -79,26 +79,26 @@ export const createDisplay = (mount) => {
       stopScrolling();
       currentText = String(text).toUpperCase();
 
-      if (currentText.length <= CELL_COUNT) {
+      if (currentText.length <= cells) {
         paint(currentText);
         resolve();
         return;
       }
 
       // Lead in from the right edge and run off to the left.
-      const runway = ' '.repeat(CELL_COUNT) + currentText + ' '.repeat(2);
+      const runway = ' '.repeat(cells) + currentText + ' '.repeat(2);
       let offset = 0;
-      paint(runway.slice(0, CELL_COUNT));
+      paint(runway.slice(0, cells));
       pendingScroll = resolve;
 
       scrollTimer = setInterval(() => {
         offset += 1;
-        if (offset > runway.length - CELL_COUNT) {
-          paint(currentText.slice(-CELL_COUNT));
+        if (offset > runway.length - cells) {
+          paint(currentText.slice(-cells));
           stopScrolling();
           return;
         }
-        paint(runway.slice(offset, offset + CELL_COUNT));
+        paint(runway.slice(offset, offset + cells));
       }, SCROLL_MS);
     });
 
@@ -106,7 +106,7 @@ export const createDisplay = (mount) => {
   const showTyping = (text) => {
     stopScrolling();
     currentText = String(text).toUpperCase();
-    paint(currentText.length > CELL_COUNT ? currentText.slice(-CELL_COUNT) : currentText);
+    paint(currentText.length > cells ? currentText.slice(-cells) : currentText);
   };
 
   const clear = () => {
@@ -121,7 +121,7 @@ export const createDisplay = (mount) => {
     for (let i = 0; i < times; i += 1) {
       paint('');
       await new Promise((r) => setTimeout(r, interval));
-      paint(text.slice(0, CELL_COUNT));
+      paint(text.slice(0, cells));
       await new Promise((r) => setTimeout(r, interval));
     }
   };

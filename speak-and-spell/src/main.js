@@ -1,7 +1,7 @@
 /**
  * Boots the device: display, keypad, machine, and the physical-keyboard bridge.
  */
-import { createDisplay } from './display/display.js';
+import { createDisplay } from '../../shared/display/display.js';
 import { createKeypad, codeForKeyboardEvent } from './ui/keypad.js';
 import { createConsole } from './game/console.js';
 import { createMachine } from './game/machine.js';
