@@ -4,7 +4,7 @@
  * Anything longer than eight characters scrolls right-to-left, exactly like
  * the original does with "THAT IS CORRECT".
  */
-import { CELL_WIDTH, CELL_HEIGHT, SEGMENT_SHAPES, SEGMENT_ORDER, segmentsFor } from './segments.js';
+import { CELL_WIDTH, CELL_HEIGHT, SEGMENT_SHAPES, SEGMENT_ORDER, segmentsFor } from '../../../shared/display/segments.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 export const CELL_COUNT = 8;
