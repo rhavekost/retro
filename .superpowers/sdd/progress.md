@@ -23,3 +23,9 @@ Task 2: complete (commit 2ca6b47, re-review clean)
   - NOTE FOR TASKS 7 & 8: they modify index.html, talkboy/index.html and the
     toy base.css files — the same files the concurrent session is editing.
     Surface the conflict before dispatching those.
+Task 3: complete (commit 10572d3, review clean)
+  - Reviewer confirmed all 8 CELL_COUNT sites parameterised; caught the
+    deliberate cells->cellElements rename avoiding parameter shadowing.
+  - Browser verification note: the dev server's module cache serves STALE
+    main.js on plain reload. A fresh dynamic import executes correctly.
+    Verify with import('./src/main.js?p='+Date.now()), not reload.
