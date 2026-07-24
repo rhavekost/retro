@@ -200,3 +200,55 @@ well-tested.
     intercepts it first, same as noted in Task 3's review).
 
 Ready to merge to main.
+
+---
+
+# Simon — progress ledger
+
+Plan: docs/superpowers/plans/2026-07-23-simon.md
+Branch: simon
+Base: a6693b4 (= main, after Speak & Math)
+
+Clean, self-contained plan — no pre-flight corrections needed (Task 6/gallery
+skipped per standing practice; controller does it directly).
+
+## Tasks
+Task 1 (rules): complete (commits a6693b4..090fc00, review clean — Approved)
+  - Minor, no action: post-win press() returns expected: undefined (out-of-
+    bounds sequence[cursor]); harmless since main.js gates on state.playing.
+Task 2 (voices): complete (commits 090fc00..01ce427, review clean — Approved)
+  - Minor, no action: playColor's wait() resolves ~12ms before the tone's
+    envelope actually finishes decaying; inaudible, plan-mandated.
+Task 3 (panels): complete (commits 01ce427..6ecf99d, review clean — Approved)
+Task 4 (wiring): complete (commit 551fa1b, controller fix 2b32c61 — Needs
+  fixes -> fixed)
+  - Important: handlePress computed the verdict and mutated game state
+    before locking panels/busy — the lock only flipped inside each verdict
+    branch, after awaiting playColor (~200ms). A press landing in that
+    window called game.press() again against an already-advanced cursor,
+    producing "Wrong — that was undefined". Bug was verbatim from the
+    plan's own template. Fixed by locking synchronously right after the
+    verdict is read, before the await. Verified live: rapid double-click
+    during a wrong answer produced one clean message, no "undefined", no
+    corrupted state.
+Task 5 (styling): complete (commit dda6c44, controller fix 2b32c61 —
+  Approved with a follow-up)
+  - Important: .level/.levels-label used by Simon's markup/JS but defined
+    nowhere — shared/styles/frame.css explicitly leaves the chip look to
+    each toy, and this plan's own styling task never asked for it. Ported
+    speak-and-spell's version, retinted to --simon-yellow. Verified live:
+    level buttons now render as proper chips, level switching works.
+
+## Live browser verification (controller)
+Disc renders correctly (4 quadrants + hub). Start -> sequence plays -> "Your
+turn". Wrong answer produces a clean single message and correct state
+(start re-enabled, not corrupted) even under a deliberate rapid double-click
+stress test of the just-fixed race window. Level switching updates
+aria-pressed and the readout correctly. No console errors at any point.
+Gallery card verified (5 toys + placeholder, disc thumbnail renders).
+
+Noted for the final step (after all 3 remaining toys ship): src/gallery.js's
+placeholder text hardcodes "Simon, Merlin, Lite-Brite, the Big Trak" as
+still-to-come — will need updating once Simon/Etch/Lite-Brite are all
+merged, since only Merlin and Big Trak will still be true. Not part of any
+current plan's scope; a one-line polish pass at the very end.
