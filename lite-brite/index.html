@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lite-Brite</title>
+    <meta name="description" content="A browser tribute to the 1967 glowing peg board." />
+    <link rel="stylesheet" href="../shared/styles/tokens.css" />
+    <link rel="stylesheet" href="../shared/styles/frame.css" />
+    <link rel="stylesheet" href="styles/base.css" />
+    <link rel="stylesheet" href="styles/board.css" />
+    <link rel="stylesheet" href="../shared/styles/backlink.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='2' fill='%23111'/><circle cx='5' cy='5' r='2' fill='%23ff2f45'/><circle cx='11' cy='6' r='2' fill='%232f9dff'/><circle cx='7' cy='11' r='2' fill='%23ffe23d'/></svg>"
+    />
+  </head>
+  <body>
+    <a class="backlink" href="../">
+      <span class="backlink__arrow" aria-hidden="true">←</span> All toys
+    </a>
+
+    <main class="stage">
+      <h1 class="title">Lite-Brite</h1>
+
+      <div class="box">
+        <div id="board" class="board"></div>
+      </div>
+
+      <div id="palette" class="palette" role="group" aria-label="Peg colour"></div>
+
+      <div class="controls">
+        <button id="share" type="button" class="button">Copy link to this picture</button>
+        <button id="clear" type="button" class="button">Clear board</button>
+      </div>
+
+      <p id="status" class="caption" role="status" aria-live="polite"></p>
+
+      <p class="hint">
+        Pick a colour and drag across the board to place pegs. Your picture lives
+        in the address bar — copy the link to send it to someone.
+      </p>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
