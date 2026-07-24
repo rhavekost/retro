@@ -1,0 +1,26 @@
+/**
+ * Tokens every toy shares. Toy-specific case colours stay in that toy's
+ * own base.css — only vocabulary used by two or more toys belongs here.
+ */
+:root {
+  --font-display: 'Futura', 'Avenir Next', 'Century Gothic', 'Trebuchet MS', system-ui, sans-serif;
+
+  /* Page background behind the toy. */
+  --backdrop: #232427;
+  --backdrop-2: #34363a;
+
+  /* Cream ABS, used by any toy with a light shell. */
+  --plastic: #f4ecd8;
+  --plastic-shade: #ded2b6;
+  --plastic-deep: #c4b795;
+
+  /* Vacuum-fluorescent teal. */
+  --vfd-glow: #79f7d8;
+  --vfd-dim: rgba(121, 247, 216, 0.07);
+
+  /* Primary-colour toy palette. */
+  --toy-red: #d8342c;
+  --toy-yellow: #f2b829;
+  --toy-blue: #2f6dbc;
+  --toy-green: #3d9c53;
+}

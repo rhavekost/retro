@@ -1,12 +1,5 @@
 :root {
   /* Fisher-Price primaries, slightly muted to read as 1970s plastic. */
-  --toy-red: #d8342c;
-  --toy-yellow: #f2b829;
-  --toy-blue: #2f6dbc;
-  --toy-green: #3d9c53;
-  --plastic: #f4ecd8;
-  --plastic-shade: #ded2b6;
-  --plastic-deep: #c4b795;
   --ink: #3a2f21;
   --backdrop: #2a4a52;
   --backdrop-glow: #3d6a72;

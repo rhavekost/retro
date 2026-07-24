@@ -1,20 +1,9 @@
 :root {
-  --backdrop: #232427;
-  --backdrop-2: #34363a;
   --ink: #ece8e0;
   --ink-dim: rgba(236, 232, 224, 0.62);
   --case-red: #d0342c;
   --case-red-dark: #97211c;
   --panel-yellow: #f4c542;
-  --vfd-glow: #79f7d8;
-  --plastic: #f4ecd8;
-
-  --toy-red: #d8342c;
-  --toy-yellow: #f2b829;
-  --toy-blue: #2f6dbc;
-  --toy-green: #3d9c53;
-
-  --font-display: 'Futura', 'Avenir Next', 'Century Gothic', 'Trebuchet MS', system-ui, sans-serif;
 }
 
 * {

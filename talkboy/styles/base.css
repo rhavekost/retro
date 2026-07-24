@@ -32,7 +32,6 @@
   --backdrop: #23262b;
   --backdrop-glow: #3a3f47;
 
-  --font-display: 'Futura', 'Avenir Next', 'Century Gothic', 'Trebuchet MS', system-ui, sans-serif;
   --font-mono: 'DIN Alternate', 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   /* The wordmark was a flowing brush script. */
   --font-script: 'Snell Roundhand', 'Brush Script MT', 'Segoe Script', 'Bradley Hand', cursive;
